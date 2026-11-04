@@ -11,13 +11,12 @@ Uso:
 Cómo funciona:
   1. Se abre Chromium. Si pide login, iniciá sesión A MANO (la sesión queda en sesion.json).
   2. Entrá vos a CALIFICACIONES haciendo clic en el menú, como siempre.
-  3. El script detecta solo que estás en Calificaciones, espera a que la red esté quieta (networkidle)
-     y arranca. No hace falta apretar Enter.
+  3. Volvé a la terminal y apretá Enter.
   4. El script elige la división, recorre TODAS las evaluaciones (1er Período, 2do Período...),
      y en cada una abre el cuaderno de cada materia y copia las notas.
 
-Los promedios se redondean siempre hacia arriba desde el medio punto:
-    4,5 -> 5      4,4 -> 4
+Los promedios se redondean: de ,50 para arriba sube, por debajo baja:
+    4,51 -> 5      4,41 -> 4
 
 Archivos que genera (tienen tus datos personales: no los compartas):
     calificaciones.csv           evaluacion, materia, docente, nivel, nombre, nota
@@ -30,7 +29,6 @@ import csv
 import json
 import os
 import re
-import time
 import webbrowser
 from datetime import datetime
 from pathlib import Path
@@ -39,10 +37,6 @@ from playwright.sync_api import sync_playwright
 
 INICIO_URL = "https://edison-mza.educamos.com/"
 SESION = "sesion.json"  # cookies de tu sesión: es privado, no lo compartas
-
-# Selector que existe solo cuando estás en la pantalla de Calificaciones.
-SEL_CALIFICACIONES = ".calificaciones-alumno-para-padres, #cmbEvaluaciones"
-ESPERA_MAX_SEG = 600  # cuánto espera a que entres a Calificaciones
 
 # --- Pedacitos de JavaScript que se ejecutan dentro de la página -------------------------
 
@@ -122,28 +116,6 @@ def iniciar_sesion_si_hace_falta(pag, contexto):
         print("Sesión iniciada.")
 
     contexto.storage_state(path=SESION)
-
-
-def esperar_calificaciones(contexto):
-    """Espera (sin pedir Enter) a que el usuario entre a Calificaciones.
-    Revisa todas las pestañas y devuelve la que muestra la pantalla de Calificaciones."""
-    print("\nAhora, en la ventana del navegador, entrá a CALIFICACIONES haciendo clic como siempre.")
-    print("Lo detecto solo, no hace falta que toques nada acá...")
-
-    limite = time.time() + ESPERA_MAX_SEG
-    while time.time() < limite:
-        for pag in reversed(contexto.pages):
-            try:
-                if pag.locator(SEL_CALIFICACIONES).count() > 0:
-                    print("Calificaciones detectada. Esperando a que termine de cargar...")
-                    pag.wait_for_load_state("networkidle")
-                    pag.wait_for_timeout(2000)
-                    return pag
-            except Exception:
-                pass  # la pestaña estaba navegando; se reintenta
-        time.sleep(1)
-
-    raise TimeoutError("No se detectó la pantalla de Calificaciones a tiempo.")
 
 
 def esperar_carga(pag):
@@ -249,8 +221,13 @@ def main():
 
         iniciar_sesion_si_hace_falta(pag, contexto)
 
-        # Espera sola a que entres a Calificaciones y a que la red esté quieta.
-        pag = esperar_calificaciones(contexto)
+        print("\nAhora, en la ventana del navegador, entrá a CALIFICACIONES haciendo clic como siempre.")
+        print("Cuando veas la pantalla de Calificaciones, volvé acá y apretá Enter.")
+        input("Enter para continuar... ")
+
+        pag = contexto.pages[-1]  # por si se abrió en una pestaña nueva
+        pag.wait_for_load_state("networkidle")
+        pag.wait_for_timeout(2000)
 
         elegir_division(pag)
 
@@ -387,7 +364,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
     <div id="resumen" class="caja resumen"></div>
     <div id="aviso"></div>
     <div id="lista"></div>
-    <p class="priv">Los promedios se redondean hacia arriba desde el medio punto (4,5 pasa a 5; 4,4 queda en 4). Primero se promedian los ítems de cada evaluación y se redondea; después se promedian las evaluaciones y se vuelve a redondear; y el general se calcula igual con las materias. El colegio puede ponderar distinto, así que tomalo como una referencia.</p>
+    <p class="priv">Los promedios se redondean hacia arriba desde el medio punto (4,51 pasa a 5; 4,41 queda en 4). Primero se promedian los ítems de cada evaluación y se redondea; después se promedian las evaluaciones y se vuelve a redondear; y el general se calcula igual con las materias. El colegio puede ponderar distinto, así que tomalo como una referencia.</p>
   </section>
   <p id="vacio" class="vacio">Todavía no cargaste ningún archivo.</p>
 </main>
@@ -398,7 +375,7 @@ const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const fmt = (n) => n.toFixed(2).replace(".", ",");
 const fmtR = (n) => String(n);
 const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
-// Redondeo hacia arriba desde .5: 4,5 -> 5 ; 4,4 -> 4. El 1e-9 evita errores de coma flotante (4,4999999).
+// De ,50 para arriba sube; por debajo baja: 4,51 -> 5 ; 4,41 -> 4. El 1e-9 evita errores de coma flotante (4,4999999).
 const redondear = (n) => Math.floor(n + 0.5 + 1e-9);
 
 const DATOS_INCRUSTADOS = null; // lo reemplaza el script educamos_calificaciones.py
