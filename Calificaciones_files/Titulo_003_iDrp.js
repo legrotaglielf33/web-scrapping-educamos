@@ -1,0 +1,2 @@
+!function(){"use strict";EduCore.register({module:"SM.Edu.Evaluacion.Modules.PuestaNotas.EvaluacionTutor.Decoradores.Titulo",collaborators:{AdministradorDecoradores:"SM.Edu.Evaluacion.Modules.PuestaNotas.EvaluacionIndividual.Decoradores.Titulo"},definition:function(o){return o.collaborators.AdministradorDecoradores}})}();
+//# sourceMappingURL=../../../../../../../Scripts/maps/Evaluacion/Modules/PuestaNotas/EvaluacionTutor/Decoradores/Titulo.js.map

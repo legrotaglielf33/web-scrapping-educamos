@@ -1,0 +1,2 @@
+!function(){"use strict";EduCore.register({module:"SM.Edu.Evaluacion.Modules.TablaVirtual.Edicion.MoverDerecha",definition:function(i){return{ejecutar:function(i,e,d){var a={indiceColumna:i.indiceColumna,indiceFila:i.indiceFila,propiedad:e};do{a.propiedad>=i.subCeldas.length-1?(a.indiceColumna++,a.propiedad=0):a.propiedad++,a.indiceColumna>=d.estado.tamanoColumna&&(a.indiceColumna=0)}while(!d.puedoEditarCelda(a,a.propiedad));return a}}}})}();
+//# sourceMappingURL=../../../../../../Scripts/maps/Evaluacion/Modules/TablaVirtual/Edicion/MoverDerecha.js.map

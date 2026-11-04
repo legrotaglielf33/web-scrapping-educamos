@@ -1,0 +1,2 @@
+!function(){"use strict";function e(e){this.__sandBox=e}EduCore.register({module:"SM.Edu.Evaluacion.Modules.PuestaNotas.EvaluacionTutor.ObservacionesAcompanamientoService",inherits:"SM.Edu.Evaluacion.Modules.Base.ServiceBase",libraries:{SM:"SM"},definition:e}),e.prototype.obtener=function(e){var i=this.__sandBox.libraries.SM;return this.get(i.Edu.Evaluacion.Api.Urls.EvaluacionTutor.ObtenerObservacionesOrientacionTutoria,e)}}();
+//# sourceMappingURL=../../../../../../Scripts/maps/Evaluacion/Modules/PuestaNotas/EvaluacionTutor/ObservacionesAcompanamientoService.js.map

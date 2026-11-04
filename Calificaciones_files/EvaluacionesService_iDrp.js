@@ -1,0 +1,2 @@
+!function(){"use strict";function e(e){}EduCore.register({module:"SM.Edu.Evaluacion.Modules.PuestaNotas.CabeceraPuestaNotas.EvaluacionesService",inherits:"SM.Edu.Evaluacion.Modules.Base.ServiceBase",definition:e}),e.prototype.obtenerEvaluaciones=function(e){return this.get(window.SM.Edu.Evaluacion.Api.Urls.PuestaNotas.ObtenerEvaluaciones,e)}}();
+//# sourceMappingURL=../../../../../../Scripts/maps/Evaluacion/Modules/PuestaNotas/CabeceraPuestaNotas/EvaluacionesService.js.map

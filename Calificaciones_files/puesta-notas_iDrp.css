@@ -1,0 +1,301 @@
+#tabla-virtual .row-overflow {
+  overflow: hidden;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+#tabla-virtual .row {
+  width: 100%;
+  margin: 0;
+  min-height: 0;
+}
+#tabla-virtual .row .form-group .btn-group,
+#tabla-virtual .row .form-group .btn-group-vertical {
+  width: 972px;
+  display: inline-block;
+}
+#tabla-virtual .row .form-group .btn-group .btn,
+#tabla-virtual .row .form-group .btn-group-vertical .btn {
+  margin: 0 0 5px 0;
+  height: 36px;
+  width: 40px;
+  min-width: 40px;
+  background-color: #fff !important;
+  cursor: pointer;
+}
+#tabla-virtual .row .form-group .btn-group .btn[disabled],
+#tabla-virtual .row .form-group .btn-group-vertical .btn[disabled] {
+  background-color: #fff !important;
+  cursor: default;
+}
+#tabla-virtual .row .form-group .btn-group .btn[disabled] .glyphBoton_flecha,
+#tabla-virtual .row .form-group .btn-group-vertical .btn[disabled] .glyphBoton_flecha {
+  color: #c0c0c0;
+  cursor: default;
+}
+#tabla-virtual .row .form-group .btn-group .btn:hover .glyphBoton_flecha,
+#tabla-virtual .row .form-group .btn-group-vertical .btn:hover .glyphBoton_flecha {
+  color: #4c9cd7;
+}
+#tabla-virtual .row .form-group .btn-group .btn.up,
+#tabla-virtual .row .form-group .btn-group-vertical .btn.up,
+#tabla-virtual .row .form-group .btn-group .btn.down,
+#tabla-virtual .row .form-group .btn-group-vertical .btn.down {
+  background: none;
+  transform: none;
+  float: left;
+  position: relative;
+  left: 44%;
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha {
+  color: #0072c6;
+  cursor: pointer;
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.left,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.left {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.up,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.up {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.down,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.down {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.up,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.up,
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.down,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.down,
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.left,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.left,
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.right,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.right {
+  position: absolute;
+  left: 3px;
+  top: 7px;
+}
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.up,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.up,
+#tabla-virtual .row .form-group .btn-group .btn .glyphBoton_flecha.down,
+#tabla-virtual .row .form-group .btn-group-vertical .btn .glyphBoton_flecha.down {
+  background: none;
+}
+#tabla-virtual .row .table {
+  table-layout: fixed;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+#tabla-virtual .row .table thead.tableFloatingHeaderOriginal {
+  background-color: #fff;
+  border-left: 1px solid #c0c0c0;
+}
+#tabla-virtual .row .table thead.tableFloatingHeaderOriginal th {
+  background-color: #0072c6;
+}
+#tabla-virtual .row .table thead th {
+  line-height: 16px;
+}
+#tabla-virtual .row .table tbody tr td img {
+  cursor: pointer;
+}
+#tabla-virtual .row .table tbody tr td.indice {
+  text-align: center;
+  background-color: #0072c6;
+  color: #fff;
+}
+#tabla-virtual .row .table tbody tr td.titulo {
+  display: table-cell;
+  margin: 0;
+  cursor: pointer;
+}
+#tabla-virtual .row .table tbody tr td.sololectura.media {
+  background-color: #6AC877;
+  cursor: pointer;
+}
+#tabla-virtual .row .table tbody tr td.nota.noeditable {
+  background-color: #cccccc;
+}
+#tabla-virtual .row .table tbody tr td.nota.complementaria {
+  background-color: #ffd7ca;
+}
+#tabla-virtual .row .table tbody tr td.nota.error {
+  background-image: url('../images/iconos_tabla/boton_tabla_warning.png');
+  background-repeat: no-repeat;
+  -moz-background-size: 20px;
+  -o-background-size: 20px;
+  background-size: 20px;
+  background-position: 50%;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento {
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  cursor: text;
+  min-height: 12px;
+  padding: 0 3px;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento .span {
+  height: 24px;
+  width: 90% !important;
+  line-height: 24px;
+  cursor: text;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento .span.comentario {
+  text-align: left;
+  width: 88% !important;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento.comentarios span.block.left {
+  width: 88%;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento.comentarios span.block.left input[type="text"] {
+  width: 100%;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento .input {
+  height: 24px;
+  width: 100% !important;
+  font-size: 12px;
+  word-break: normal;
+  -ms-word-break: normal;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento .glyph_observaciones {
+  cursor: pointer;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento .glyphBoton_edicionrapida {
+  position: absolute;
+  right: 2px;
+}
+#tabla-virtual .row .table tbody tr td.nota .elemento.vacio {
+  background-image: url('../images/PuntoRojo.png');
+  background-repeat: no-repeat;
+  -moz-background-size: 12px;
+  -o-background-size: 12px;
+  background-size: 12px;
+  background-position: 50%;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+#tabla-virtual .row .table tbody tr td.noaplica {
+  background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 5px, #ccc 5px, #ccc 10px);
+  background: -moz-repeating-linear-gradient(135deg, #fff, #fff 5px, #ccc 5px, #ccc 10px);
+  background: -o-repeating-linear-gradient(135deg, #fff, #fff 5px, #ccc 5px, #ccc 10px);
+  background: repeating-linear-gradient(135deg, #fff, #fff 5px, #ccc 5px, #ccc 10px);
+}
+#tabla-virtual .row .table tbody tr td.media-categoria-cuaderno {
+  background-color: #D1E3D0 !important;
+}
+#tabla-virtual .row .table tfoot td {
+  color: #fff;
+}
+#tabla-virtual .row .table tfoot td.media {
+  background-color: #B5D7B4;
+  color: #000;
+}
+#tabla-virtual .botonera {
+  float: none !important;
+  /*width: auto!important;*/
+}
+#tabla-virtual .botonera div.balSlider {
+  width: 100% !important;
+}
+#tabla-virtual .botonera div.balSlider .k-slider-buttons .k-slider-items {
+  margin: 0 34px;
+}
+#tabla-virtual .maximo-suspenso-superado {
+  background-color: lightcoral;
+}
+span.titulo-wrap,
+label.titulo-wrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-word;
+  width: 88%;
+  line-height: 16px;
+}
+.comentarios .glyphBoton_nuevo {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.glyphBoton_nuevo {
+  font-size: 11px;
+  color: red;
+  float: right;
+  height: 0;
+  width: 0;
+  position: relative;
+  top: 0;
+  right: 12px;
+  cursor: default;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.glyphBoton_nuevo:hover {
+  color: red;
+}
+/*.glyphBoton_edicionrapida + .glyphBotones.glyphBoton_nuevo {
+    right: 26px;
+}*/
+.row.row-overflow.stickyHeaderPlaceHolder.sticked-element {
+  min-width: inherit !important;
+  max-width: inherit !important;
+}
+.ui-tabs .botonera.mtop0.mbottom5[style] {
+  padding-right: 38px;
+}
+.ui-tabs .botonera.flotante.mtop0.mbottom5.sticked-element {
+  padding-right: 38px;
+}
+.glyph_imputacion {
+  position: relative;
+  z-index: 2;
+}
+table tr th span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1C1C1C !important;
+}
+table tr th span .up {
+  background-image: url(../images/EDS/icons/chevron-down.svg);
+  transform: rotate(0deg);
+}
+table tr th span .down {
+  background-image: url(../images/EDS/icons/chevron-down.svg);
+  transform: rotate(180deg);
+}
+.k-tabla table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none;
+}
+.bodyPlaceHolder table tbody tr td {
+  border-bottom: 1px solid #F0F0F0;
+  border-right: 1px solid #F0F0F0;
+}
+.bodyPlaceHolder table tbody tr:hover {
+  background-color: #EFF6FF !important;
+}
+.aviso-error {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 13px;
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 2px;
+}

@@ -1,0 +1,2 @@
+!function(){"use strict";ko.extenders.tiposDeDato={},ko.extenders.esEntero=function(e,t){return e.esEntero=t,e},ko.extenders.esDecimal=function(e,t){return e.esDecimal=t,e},ko.extenders.esFecha=function(e,t){return e.esFecha=t,e},ko.extenders.esTexto=function(e,t){return e.esTexto=t,e}}();
+//# sourceMappingURL=../../../../../../Scripts/maps/Core/libraries/ko/extenders/ko.extenders.tiposDeDato.js.map

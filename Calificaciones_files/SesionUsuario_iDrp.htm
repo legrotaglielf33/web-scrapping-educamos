@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var COOKIE_Auth = "FedAuthLight"
+
+        function isValidGuid(value) {
+            var validGuid = /^(\{|\()?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}(\}|\))?$/;
+            var emptyGuid = /^(\{|\()?0{8}-(0{4}-){3}0{12}(\}|\))?$/;
+            return validGuid.test(value) && !emptyGuid.test(value);
+        }
+
+        function getCookieValue(cookieName) {
+            var allCookieValue = document.cookie;
+            var cookieValueStart = allCookieValue.indexOf(" " + cookieName + "=");
+            if (cookieValueStart === -1) {
+                cookieValueStart = allCookieValue.indexOf(cookieName + "=");
+            }
+            if (cookieValueStart === -1) {
+                return null;
+            }
+
+            cookieValueStart = allCookieValue.indexOf("=", cookieValueStart) + 1;
+            var cookieValueEnd = allCookieValue.indexOf(";", cookieValueStart);
+            if (cookieValueEnd === -1) {
+                cookieValueEnd = allCookieValue.length;
+            }
+
+            return unescape(allCookieValue.substring(cookieValueStart, cookieValueEnd));
+        }
+
+        function getSessionStatus(sessionId) {
+            var lightSessionCookieValue = getCookieValue(COOKIE_Auth);
+
+            if (lightSessionCookieValue === null) {
+                return "changed";
+            }
+
+            //var legacyDelimiter = ",";
+            //var delimiter = "+";
+
+            //lightSessionCookieValue = lightSessionCookieValue.replace(legacyDelimiter, delimiter);
+
+            //var activeSessionIds = lightSessionCookieValue.split(delimiter);
+            //if (activeSessionIds.indexOf(sessionId) === -1) {
+            //    return "changed";
+            //}
+            return "unchanged";
+        }
+
+        function receiveMessage(e) {            
+            var sessionStatus;
+            var messageFields = e.data.split(' ');
+            if (messageFields.length !== 2) {
+                sessionStatus = 'error';
+            } else {
+                var sessionId = messageFields[1];
+                //if (isValidGuid(sessionId)) {
+                sessionStatus = getSessionStatus(sessionId);
+                //} else {
+                //    sessionStatus = 'error';
+                //}
+            }
+            e.source.postMessage(sessionStatus, e.origin);
+        }
+       
+        //Añader el evento y muestra un mensaje si no es capaz
+        var isCrossDocMessagingSupported = false;
+
+        if (window.postMessage) {
+            if (window.addEventListener) { // all browsers except IE before version 9
+                window.addEventListener("message", receiveMessage, false);
+                isCrossDocMessagingSupported = true;
+            } else if (window.attachEvent) { // IE before version 9
+                window.attachEvent("onmessage", receiveMessage);
+                isCrossDocMessagingSupported = true;
+            }
+        }
+
+        if (!isCrossDocMessagingSupported) {
+            alert("Session status checking is not supported because HTML5 cross-document messaging is not supported by your browser.");
+        }
+    </script>
+
+
+</body></html>

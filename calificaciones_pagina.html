@@ -1,0 +1,1319 @@
+<!DOCTYPE html><html lang="es-es" class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths k-webkit k-webkit156"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+
+    <title>Calificaciones</title>
+    <link rel="stylesheet" href="/cdn/Content/less/mediaqueries.menu_superior.min.css">
+    <link href="/cdn/Content/scss/educamos-EDS.min.css" rel="stylesheet">
+    <link href="/cdn/Content/less/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/cdn/Content/images/favicon.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-C3SLLFPB74&amp;cx=c&amp;gtm=4e6b21h1"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-87D5559FLT&amp;l=dataLayerGA4"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-WBC8QCX"></script><script id="spcloader" type="text/javascript" async="" charset="utf-8" src="https://sdk.privacy-center.org/21ba404c-c1fa-46f4-8d3b-810f25594670/loader.js?target_type=notice&amp;target=Cbb2fHGN"></script><script type="text/javascript">
+        window.gdprAppliesGlobally = true;
+        (function () {
+            function a(e) {
+                if (!window.frames[e]) {
+                    if (document.body && document.body.firstChild) {
+                        var t = document.body, n = document.createElement("iframe");
+                        n.style.display = "none"; n.name = e; n.title = e;
+                        t.insertBefore(n, t.firstChild)
+                    } else { setTimeout(function () { a(e) }, 5) }
+                }
+            }
+            function e(n, r, o, c, s) {
+                function e(e, t, n, a) {
+                    if (typeof n !== "function") { return }
+                    if (!window[r]) { window[r] = [] }
+                    var i = false;
+                    if (s) { i = s(e, t, n) }
+                    if (!i) { window[r].push({ command: e, parameter: t, callback: n, version: a }) }
+                }
+                e.stub = true;
+
+                function t(a) {
+                    if (!window[n] || window[n].stub !== true) { return }
+                    if (!a.data) { return }
+                    var i = typeof a.data === "string";
+                    var e;
+                    try { e = i ? JSON.parse(a.data) : a.data }
+                    catch (t) { return }
+                    if (e[o]) {
+                        var r = e[o];
+                        window[n](r.command, r.parameter,
+                            function (e, t) { var n = {}; n[c] = { returnValue: e, success: t, callId: r.callId }; a.source.postMessage(i ? JSON.stringify(n) : n, "*") }, r.version)
+                    }
+                }
+
+                if (typeof window[n] !== "function") {
+                    window[n] = e;
+                    if (window.addEventListener) { window.addEventListener("message", t, false) }
+                    else { window.attachEvent("onmessage", t) }
+                }
+            }
+
+            e("__tcfapi", "__tcfapiBuffer", "__tcfapiCall", "__tcfapiReturn");
+            a("__tcfapiLocator");
+            (function (e, tgt) {
+                var t = document.createElement("script");
+                t.id = "spcloader"; t.type = "text/javascript"; t.async = true; t.charset = "utf-8";
+                t.src = "https://sdk.privacy-center.org/" + e + "/loader.js?target_type=notice&target=" + tgt;
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(t, n)
+            })("21ba404c-c1fa-46f4-8d3b-810f25594670", "Cbb2fHGN")
+
+            function borrar_cookie(cookieName) {
+                var BORRAR_COOKIE_LOCAL_DOMAIN = '=; max-age=0;',
+                    BORRAR_COOKIE_EDUCAMOS_DOMAIN = '=; max-age=0; domain=.educamos.com';
+                document.cookie = cookieName + BORRAR_COOKIE_LOCAL_DOMAIN;
+                document.cookie = cookieName + BORRAR_COOKIE_EDUCAMOS_DOMAIN;
+            }
+
+            var GOOGLE_ANALITICS_ID = 'c:googleana-SM'
+            var PURPOSE_GA_ID = 'p-GA-SM';
+            window.didomiOnReady = window.didomiOnReady || [];
+            window.didomiOnReady.push(function (Didomi) {
+
+                Didomi.on('consent.changed', function (context) {
+                    var consentStatusGA = Didomi.getUserConsentStatusForVendor(GOOGLE_ANALITICS_ID);
+                    var consentStatusPGA = Didomi.getUserConsentStatusForPurpose(PURPOSE_GA_ID);
+                    if (consentStatusGA === false || consentStatusPGA === false) {
+                        borrar_cookie('_ga');
+                        borrar_cookie('_gat');
+                        borrar_cookie('_gid');
+                    }
+                });
+            });
+        })();
+    </script>
+
+
+
+
+<!-- Google Tag Manager -->
+    <script>
+        dataLayer = (typeof dataLayer !== 'undefined') ? dataLayer : [];
+        dataLayer.push({
+            'country': 14,
+            'community': 13,
+            'province': null,
+            'schoolName': 'Colegio Tomás Alva Edison',
+            'schoolCode': '200066'
+        });
+        dataLayer.push({
+            'userId': 2209699,
+            'profile': 3,
+        });
+
+        if ('False' == 'True') {
+            dataLayer.push({ event: 'gtm.js', 'gtm.start': new Date().getTime() });
+        } else {
+            var xhr  = new XMLHttpRequest();
+            xhr.onreadystatechange = function(data) {
+                if (xhr.readyState === 4) {
+                    var data = JSON.parse(xhr.response);
+                    dataLayer.push(data);
+                    dataLayer.push({ event: 'gtm.js', 'gtm.start': new Date().getTime() });
+                }
+            };
+            xhr.open("GET", "/Home/ObtenerEtapaCursoGTM", true);
+            xhr.send();
+        }
+
+        function initGTM (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        }
+
+        function loadGTM() {
+            initGTM(window, document, 'script', 'dataLayer', 'GTM-WBC8QCX');
+        }
+
+        if ('True' === 'True') {
+            var GOOGLE_ANALITICS_ID = 'c:googleana-SM'
+            var PURPOSE_GA_ID = 'p-GA-SM';
+            window.didomiOnReady = window.didomiOnReady || [];
+            window.didomiOnReady.push(function (Didomi) {
+                var consentStatusGA = Didomi.getUserConsentStatusForVendor(GOOGLE_ANALITICS_ID);
+                var consentStatusPGA = Didomi.getUserConsentStatusForPurpose(PURPOSE_GA_ID);
+                if (consentStatusGA !== false && consentStatusPGA !== false) {
+                    loadGTM();
+                }
+            });
+        } else {
+            loadGTM();
+        }
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <script>
+    (function () {
+        function initGA (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        }
+
+        function loadGA() {
+            var keyGA = 'UA-78539553-3';
+            if (keyGA != '') {
+                initGA(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', keyGA, 'auto');
+                ga('send', 'pageview');
+            }
+        }
+
+        function initGA4(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        }
+
+        function loadGA4() {
+            var keyGA4 = 'G-87D5559FLT';
+            if (keyGA4 != '') {
+                initGA4(window, document, 'script', 'dataLayerGA4', keyGA4);
+
+                dataLayerGA4 = (typeof dataLayerGA4 !== 'undefined') ? dataLayerGA4 : [];
+                function gtag() { dataLayerGA4.push(arguments); }
+
+                gtag('js', new Date());
+                gtag('config', keyGA4);
+            }
+        }
+
+        if ('True' === 'True') {
+            var GOOGLE_ANALITICS_ID = 'c:googleana-SM'
+            var PURPOSE_GA_ID = 'p-GA-SM';
+            window.didomiOnReady = window.didomiOnReady || [];
+            window.didomiOnReady.push(function (Didomi) {
+                var consentStatusGA = Didomi.getUserConsentStatusForVendor(GOOGLE_ANALITICS_ID);
+                var consentStatusPGA = Didomi.getUserConsentStatusForPurpose(PURPOSE_GA_ID);
+                if (consentStatusGA !== false && consentStatusPGA !== false) {
+                    loadGA();
+                    loadGA4();
+                }
+            });
+        } else {
+            loadGA();
+            loadGA4();
+        }
+    })()
+    </script>
+
+
+
+    <script type="text/javascript">
+        var appInsights=window.appInsights||function(config)
+        {
+            function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
+            var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+        }({
+            samplingPercentage: 10,
+            instrumentationKey: "767ea9ad-457a-4ed6-b4ec-13bd8c0d593d"
+        });
+
+        window.appInsights = appInsights;
+        // Add telemetry initializer
+        appInsights.queue.push(function () {
+            appInsights.context.addTelemetryInitializer(function (envelope) {
+                /* filter our Ajax requests with signalr in url*/
+                if (envelope.name === Microsoft.ApplicationInsights.Telemetry.RemoteDependencyData.envelopeType && envelope.data.baseData.name.indexOf("signalr") > -1) {
+                    return false;
+                }
+            });
+        });
+        // end of insertion
+        appInsights.trackPageView();
+    </script><script src="//az416426.vo.msecnd.net/scripts/a/ai.0.js"></script>
+
+
+<script type="text/javascript">
+    var SM = SM || {};
+    SM.PrefijoTenant = function () {
+        var str = document.location.pathname;
+        var reg = new RegExp('^\/tenant\/\\d+\/');
+        var match = str.match(reg);
+        return (match && match.length) ? str.substring(0, match[0].length - 1) : '';
+    }
+</script>
+
+
+        <script type="text/javascript" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/EduCore/EduCore.js?v=0"></script>
+
+
+
+<script type="text/javascript">
+    (function () {
+        var cdnUrls = [];
+            
+        cdnUrls.push("https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net");
+        
+
+        function resolve(pathReference) {
+            if (pathReference.type == "module") {
+                var scriptPath = pathReference.path["AR"] || pathReference.path.Default;
+                return getFinalPathFor(scriptPath);
+            } else if (pathReference.type == "library") {
+                return getFinalPathFor(pathReference.path);
+            }
+            throw "The path object \"pathReference\" is wrong.";
+        }
+
+        function getFinalPathFor(scriptPath) {
+                
+            scriptPath = getCdnPathFor(scriptPath);
+            
+            return getScriptUrlWithQueryString(scriptPath);
+        }
+
+        function getCdnPathFor(scriptPath) {
+            var indiceAleatorio = parseInt(Math.random() * (cdnUrls.length));
+            var cdnUrl = !!cdnUrls[indiceAleatorio] ? cdnUrls[indiceAleatorio] : "";
+
+            if (scriptPath.indexOf("/cdn") == 0) {
+                return cdnUrl + scriptPath.substring(4);
+            }
+            if (scriptPath.indexOf("cdn") == 0) {
+                return cdnUrl + scriptPath.substring(3);
+            }
+            return scriptPath;
+        }
+
+        function getScriptUrlWithQueryString(scriptPath) {
+            var scriptVersion = "0";
+            var queryString = scriptVersion ? "?v=" + scriptVersion : "";
+            var scriptUrlWithQueryString = scriptPath += queryString
+            return scriptUrlWithQueryString;
+        }
+
+        function getTracesConfig() {
+            var tracesConfig = {};
+                
+            tracesConfig.events = false;
+            
+            return tracesConfig;
+        }
+
+        function getExtraLibraries(libraryId) {
+            var extraLibraries = [];
+            switch (libraryId) {
+                case "kendo":
+                    extraLibraries.push("kendo.fix");
+                    break;
+            }
+            return extraLibraries;
+        }
+
+        var tracesConfig = getTracesConfig();
+        EduCore.config({ pathResolver: resolve, traces: tracesConfig, extraLibrariesResolver: getExtraLibraries });
+    }());
+</script>
+
+<script type="text/javascript">
+    (function () {
+        EduCore.register({ library: "SM.Edu.Core.Modules.Init.AppInitProxy", path: "/cdn/Scripts/Core/AppInitProxy.js" });
+        EduCore.register({ library: "$", path: "/cdn/Scripts/Vendor/jquery/jquery-2.2.1.js" });
+        EduCore.register({ library: "$.validator", path: "/cdn/Scripts/Vendor/jquery.validate.min.js", bundle: "JqueryValidate" });
+        EduCore.register({ library: "$.validator.unobtrusive", path: "/cdn/Scripts/Vendor/jquery.validate.min.js", bundle: "JqueryValidate" });
+        EduCore.register({ library: "$.validator.unobtrusive.ajax", path: "/cdn/Scripts/Vendor/jquery.validate.min.js", bundle: "JqueryValidate" });
+
+        EduCore.register({ library: "$.ui", path: "/cdn/Scripts/Vendor/jquery-ui." + "es-AR" + ".min.js", bundle: "JqueryUI-" + "es-AR" });
+        EduCore.register({ library: "$.ui.datepicker.regional", path: "/cdn/Scripts/Vendor/jquery-ui." + "es-AR" + ".min.js", bundle: "JqueryUI-" + "es-AR" });
+        EduCore.register({ library: "$.ui.dialog.regional", path: "/cdn/Scripts/Vendor/jquery-ui." + "es-AR" + ".min.js", bundle: "JqueryUI-" + "es-AR" });
+        EduCore.register({ library: "$.ui.touch-punch", path: "/cdn/Scripts/Vendor/jquery-ui." + "es-AR" + ".min.js", bundle: "JqueryUI-" + "es-AR" });
+
+        EduCore.register({ library: "ko", path: "/cdn/Scripts/Vendor/knockout/knockout-3.4.0.js" });
+        EduCore.register({ library: "ko.validation", path: "/cdn/Scripts/Vendor/ko-validation." + "es-AR" + ".min.js", bundle: "KoValidation-" + "es-AR" });
+        EduCore.register({ library: "ko.validation.locale", path: "/cdn/Scripts/Vendor/ko-validation." + "es-AR" + ".min.js", bundle: "KoValidation-" + "es-AR" });
+
+        EduCore.register({ library: "kendo", path: "/cdn/Scripts/Vendor/kendo." + "es-AR" + ".min.js", bundle: "Kendo-" + "es-AR" });
+        EduCore.register({ library: "kendo.fix", path: "/cdn/Scripts/Vendor/kendo." + "es-AR" + ".min.js", bundle: "Kendo-" + "es-AR" });
+        EduCore.register({ library: "kendo.culture", path: "/cdn/Scripts/Vendor/kendo." + "es-AR" + ".min.js", bundle: "Kendo-" + "es-AR" });
+        EduCore.register({ library: "kendo.culture.init", path: "/cdn/Scripts/Vendor/kendo." + "es-AR" + ".min.js", bundle: "Kendo-" + "es-AR" });
+        EduCore.register({ library: "kendo.messages", path: "/cdn/Scripts/Vendor/kendo." + "es-AR" + ".min.js", bundle: "Kendo-" + "es-AR" });
+
+        EduCore.register({ library: "Vue", path: "/cdn/Scripts/Vendor/vue/vue.js" });
+
+        EduCore.register({ library: "Globalize", path: "/cdn/Scripts/Vendor/globalize." + "es-AR" + ".min.js", bundle: "Globalize-" + "es-AR" });
+        EduCore.register({ library: "Globalize.culture", path: "/cdn/Scripts/Vendor/globalize." + "es-AR" + ".min.js", bundle: "Globalize-" + "es-AR" });
+
+        EduCore.register({ library: "_", path: "/cdn/Scripts/Vendor/underscore.min.js", bundle: "Underscore" });
+        EduCore.register({ library: "_.string", path: "/cdn/Scripts/Vendor/underscore.min.js", bundle: "Underscore" });
+
+        EduCore.register({ library: "Foundation", path: "/cdn/Scripts/Vendor/foundation.min.js", bundle: "Foundation" });
+        EduCore.register({ library: "Foundation.libs.tooltip", path: "/cdn/Scripts/Vendor/foundation.min.js", bundle: "Foundation" });
+
+        EduCore.register({ library: "Modernizr", path: "/cdn/Scripts/Vendor/modernizr/modernizr-2.6.2.js" });
+        EduCore.register({ library: "toastr", path: "/cdn/Scripts/Vendor/toastr/toastr.js" });
+
+        EduCore.register({ library: "es6-shim", path: "/cdn/Scripts/Vendor/polyfills.min.js", bundle: "Polyfills" });
+        EduCore.register({ library: "unorm", path: "/cdn/Scripts/Vendor/polyfills.min.js", bundle: "Polyfills" });
+        EduCore.register({ library: "RegExp.escape", path: "/cdn/Scripts/Vendor/polyfills.min.js", bundle: "Polyfills" });
+
+        EduCore.register({ library: "SM.Edu.Contexto", path: "/Home/Contexto?v=" + "0" });
+        EduCore.register({ library: "SM.Edu.Core.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-core." + "es-AR" + ".min.js", bundle: "LiteralesCore-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Core.Entidades.Educamos", path: "/cdn/Scripts/Vendor/literales-core." + "es-AR" + ".min.js", bundle: "LiteralesCore-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Core.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-core." + "es-AR" + ".min.js", bundle: "LiteralesCore-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Core.Entidades.Sistema", path: "/cdn/Scripts/Vendor/literales-core." + "es-AR" + ".min.js", bundle: "LiteralesCore-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Core.Urls", path: "/cdn/Scripts/Vendor/const-core.min.js", bundle: "ConstantesCore" });
+        EduCore.register({ library: "SM.Edu.Core.Api.Urls", path: "/cdn/Scripts/Vendor/const-core.min.js", bundle: "ConstantesCore" });
+        EduCore.register({ library: "SM.Edu.Core.Vistas.Shared", path: "/cdn/Scripts/Vendor/const-core.min.js", bundle: "ConstantesCore" });
+        EduCore.register({ library: "SM.Edu.Core.Vistas.modules", path: "/cdn/Scripts/Vendor/const-core.min.js", bundle: "ConstantesCore" });
+        EduCore.register({ library: "SM.Edu.Core.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-core.min.js", bundle: "ConstantesCore" });
+
+        EduCore.register({ module: "SM.Edu.Core.Modules.HTML5.WebNotifications", path: { Default: "/cdn/Scripts/Vendor/html5.min.js" }, bundle: "HTML5" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.HTML5.PageVisibility", path: { Default: "/cdn/Scripts/Vendor/html5.min.js" }, bundle: "HTML5" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.HTML5.WebStorage", path: { Default: "/cdn/Scripts/Vendor/html5.min.js" }, bundle: "HTML5" });
+
+        EduCore.register({ module: "EduCore.Libraries.Core", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Core", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Biblioteca", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.DatosCentro", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Comunicacion", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Evaluacion", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Extraescolares", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.GestionEconomica", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+        EduCore.register({ module: "EduCore.Modules.Tpv", path: { Default: "/cdn/Scripts/Vendor/eduCoreReferencias.min.js" }, bundle: "ReferenciasEduCore" });
+
+        EduCore.register({ library: "SM.Edu.DatosCentro.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-dc." + "es-AR" + ".min.js", bundle: "LiteralesDC-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-dc." + "es-AR" + ".min.js", bundle: "LiteralesDC-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Entidades", path: "/cdn/Scripts/Vendor/literales-dc." + "es-AR" + ".min.js", bundle: "LiteralesDC-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Urls", path: "/cdn/Scripts/Vendor/const-dc.min.js", bundle: "ConstantesDC" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Api.Urls", path: "/cdn/Scripts/Vendor/const-dc.min.js", bundle: "ConstantesDC" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Vistas", path: "/cdn/Scripts/Vendor/const-dc.min.js", bundle: "ConstantesDC" });
+        EduCore.register({ library: "SM.Edu.DatosCentro.Comun.Enumerados.Enumerados", path: "/cdn/Scripts/Vendor/const-dc.min.js", bundle: "ConstantesDC" });
+
+        EduCore.register({ library: "SM.Edu.Comunicacion.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-cc." + "es-AR" + ".min.js", bundle: "LiteralesCC-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Comunicacion.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-cc." + "es-AR" + ".min.js", bundle: "LiteralesCC-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Comunicacion.Urls", path: "/cdn/Scripts/Vendor/const-cc.min.js", bundle: "ConstantesCC" });
+        EduCore.register({ library: "SM.Edu.Comunicacion.Api.Urls", path: "/cdn/Scripts/Vendor/const-cc.min.js", bundle: "ConstantesCC" });
+        EduCore.register({ library: "SM.Edu.Comunicacion.Vistas", path: "/cdn/Scripts/Vendor/const-cc.min.js", bundle: "ConstantesCC" });
+
+        EduCore.register({ library: "SM.Edu.Evaluacion.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-ev." + "es-AR" + ".min.js", bundle: "LiteralesEV-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Evaluacion.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-ev." + "es-AR" + ".min.js", bundle: "LiteralesEV-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Evaluacion.Urls", path: "/cdn/Scripts/Vendor/const-ev.min.js", bundle: "ConstantesEV" });
+        EduCore.register({ library: "SM.Edu.Evaluacion.Api.Urls", path: "/cdn/Scripts/Vendor/const-ev.min.js", bundle: "ConstantesEV" });
+        EduCore.register({ library: "SM.Edu.Evaluacion.Vistas", path: "/cdn/Scripts/Vendor/const-ev.min.js", bundle: "ConstantesEV" });
+        EduCore.register({ library: "SM.Edu.Evaluacion.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-ev.min.js", bundle: "ConstantesEV" });
+
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-ge." + "es-AR" + ".min.js", bundle: "LiteralesGE-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-ge." + "es-AR" + ".min.js", bundle: "LiteralesGE-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Entidades", path: "/cdn/Scripts/Vendor/literales-ge." + "es-AR" + ".min.js", bundle: "LiteralesGE-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Urls", path: "/cdn/Scripts/Vendor/const-ge.min.js", bundle: "ConstantesGE" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Api.Urls", path: "/cdn/Scripts/Vendor/const-ge.min.js", bundle: "ConstantesGE" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Vistas", path: "/cdn/Scripts/Vendor/const-ge.min.js", bundle: "ConstantesGE" });
+        EduCore.register({ library: "SM.Edu.GestionEconomica.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-ge.min.js", bundle: "ConstantesGE" });
+
+        EduCore.register({ library: "SM.Edu.Extraescolares.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-ex." + "es-AR" + ".min.js", bundle: "LiteralesExtraescolares-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Extraescolares.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-ex." + "es-AR" + ".min.js", bundle: "LiteralesExtraescolares-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Extraescolares.Urls", path: "/cdn/Scripts/Vendor/const-ex.min.js", bundle: "ConstantesExtraescolares" });
+        EduCore.register({ library: "SM.Edu.Extraescolares.Api.Urls", path: "/cdn/Scripts/Vendor/const-ex.min.js", bundle: "ConstantesExtraescolares" });
+        EduCore.register({ library: "SM.Edu.Extraescolares.Vistas", path: "/cdn/Scripts/Vendor/const-ex.min.js", bundle: "ConstantesExtraescolares" });
+        EduCore.register({ library: "SM.Edu.Extraescolares.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-ex.min.js", bundle: "ConstantesExtraescolares" });
+
+        EduCore.register({ library: "SM.Edu.Biblioteca.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-bi." + "es-AR" + ".min.js", bundle: "LiteralesBiblioteca-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Biblioteca.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-bi." + "es-AR" + ".min.js", bundle: "LiteralesBiblioteca-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Biblioteca.Urls", path: "/cdn/Scripts/Vendor/const-bi.min.js", bundle: "ConstantesBiblioteca" });
+        EduCore.register({ library: "SM.Edu.Biblioteca.Api.Urls", path: "/cdn/Scripts/Vendor/const-bi.min.js", bundle: "ConstantesBiblioteca" });
+        EduCore.register({ library: "SM.Edu.Biblioteca.Vistas", path: "/cdn/Scripts/Vendor/const-bi.min.js", bundle: "ConstantesBiblioteca" });
+        EduCore.register({ library: "SM.Edu.Biblioteca.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-bi.min.js", bundle: "ConstantesBiblioteca" });
+
+        EduCore.register({ library: "SM.Edu.Tpv.Comun.Excepciones", path: "/cdn/Scripts/Vendor/literales-tpv." + "es-AR" + ".min.js", bundle: "LiteralesTPV-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Tpv.Comun.Literales", path: "/cdn/Scripts/Vendor/literales-tpv." + "es-AR" + ".min.js", bundle: "LiteralesTPV-" + "es-AR" });
+        EduCore.register({ library: "SM.Edu.Tpv.Urls", path: "/cdn/Scripts/Vendor/const-tpv.min.js", bundle: "ConstantesTPV" });
+        EduCore.register({ library: "SM.Edu.Tpv.Api.Urls", path: "/cdn/Scripts/Vendor/const-tpv.min.js", bundle: "ConstantesTPV" });
+        EduCore.register({ library: "SM.Edu.Tpv.Vistas", path: "/cdn/Scripts/Vendor/const-tpv.min.js", bundle: "ConstantesTPV" });
+        EduCore.register({ library: "SM.Edu.Tpv.Comun.Enumerados", path: "/cdn/Scripts/Vendor/const-tpv.min.js", bundle: "ConstantesTPV" });
+
+        EduCore.register({ module: "SM.Edu.Core.Modules.Utiles.Kendo", path: { Default: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Utiles.UUID", path: { Default: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Utiles.QueryString", path: { Default: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Fechas.Fechas", path: { Default: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" } });
+        EduCore.register({ library: "$.fn.caret", path: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Numericos.CamposDecimales", path: { Default: "/cdn/Scripts/Vendor/utiles.min.js", bundle: "Utiles" } });
+
+        EduCore.register({ module: "SM.Edu.Core.Modules.Init.LegacyInit", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.ConfiguracionAjax.ConfiguracionAjax", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.SoloLectura.SoloLecturaInit", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Botones.Botones", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.ControlCambios.ControlCambios", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Accesos.Accesos", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Obsoletos.ContextoJquery.ContextoJquery", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Dialogos.Jquery.DialogoB", path: { Default: "/cdn/Scripts/Vendor/init.min.js", bundle: "Init" } });
+
+        EduCore.register({ module: "SM.Edu.Core.Modules.ServicioBase.ServicioBase", path: { Default: "/cdn/Scripts/Core/modules/serviciobase/serviciobase.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Promesas.Promesa", path: { Default: "/cdn/Scripts/Core/modules/Promesas/Promesa.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Promesas.PromesaProvider", path: { Default: "/cdn/Scripts/Core/modules/Promesas/PromesaProvider.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Spinner.Spinner", path: { Default: "/cdn/Scripts/Core/modules/Spinner/Spinner.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Dialogos.Jquery.DialogoC", path: { Default: "/cdn/Scripts/Core/modules/Dialogos/Jquery/DialogoC.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Loggers.LoggerB", path: { Default: "/cdn/Scripts/Core/modules/Loggers/LoggerB.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Grids.PersistenciaBatch.PersistenciaBatch", path: { Default: "/cdn/Scripts/Core/modules/Grids/PersistenciaBatch/PersistenciaBatch.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Tabs.Jquery.TabsHelper", path: { Default: "/cdn/Scripts/Core/modules/Tabs/Jquery/TabsHelper.js" } });
+        EduCore.register({ module: "SM.Edu.Core.Modules.GoogleAnalytics.GoogleAnalytics", path: { Default: "/cdn/Scripts/Core/modules/GA/GA.js" } });
+
+        EduCore.register({ library: "$.signalR", path: "/cdn/Scripts/Vendor/signalr.min.js", bundle: "SignalR" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.SignalR.SignalR", path: { Default: "/cdn/Scripts/Vendor/signalr.min.js" }, bundle: "SignalR" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.SignalR.SignalRHubs", path: { Default: "/cdn/Scripts/Vendor/signalr.min.js" }, bundle: "SignalR" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.SignalR.SignalRCallbacks", path: { Default: "/cdn/Scripts/Vendor/signalr.min.js" }, bundle: "SignalR" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.SignalR.SignalRProxies", path: { Default: "/cdn/Scripts/Vendor/signalr.min.js" }, bundle: "SignalR" });
+
+        EduCore.register({ library: "bowser", path: "/cdn/Scripts/Vendor/bowser/bowser.js", bundle: "Navegador" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Navegador.Navegador", path: { Default: "/cdn/Scripts/Vendor/navegador.min.js" }, bundle: "Navegador" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Navegador.GestionNavegadorCompatible", path: { Default: "/cdn/Scripts/Vendor/navegador.min.js" }, bundle: "Navegador" });
+
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesB", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesFechas", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesRequeridoSi", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesFichero", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesRangoFechas", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesCaracterMenorQue", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesUsuario", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesDecimal", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+        EduCore.register({ module: "SM.Edu.Core.Modules.Validaciones.ValidacionesC", path: { Default: "/cdn/Scripts/Vendor/validaciones.min.js" }, bundle: "Validaciones" });
+    }());
+</script>    <script type="text/javascript">
+    (function () {
+        EduCore.register({
+            module: "AppInit",
+            definition: AppInitSingletonFactory
+        });
+
+        var promesaAppInitInicializado;
+
+        function AppInitSingletonFactory(sandbox) {
+            promesaAppInitInicializado = promesaAppInitInicializado || obtenerAppInitProxy(sandbox);
+            return promesaAppInitInicializado;
+        }
+
+        function obtenerAppInitProxy(sandbox) {
+            function CargaAppInitProxy() {
+                var self = this;
+                self._callbacks = [];
+                self._appInitProxyCargado = false;
+            }
+
+            CargaAppInitProxy.prototype.then = function (callback) {
+                var self = this;
+                if (self._appInitProxyCargado) {
+                    callback();
+                }
+                else {
+                    self._callbacks.push(callback);
+                }
+            }
+
+            CargaAppInitProxy.prototype.iniciar = function () {
+                var self = this;
+                document.getElementById('dvLoading').style.display = "block";
+                EduCore.start({ module: 'SM.Edu.Core.Modules.Init.AppInitProxy' }).then(function () {
+                    self._appInitProxyCargado = true;
+                    ocultarSpinner();
+                    while (self._callbacks.length > 0) {
+                        self._callbacks[0]();
+                        self._callbacks.shift();
+                    }
+                });
+            }
+
+            function ocultarSpinner() {
+                var idPeticion = SM.Edu.Core.Utiles.Spinner.mostrar();
+                SM.Edu.Core.Utiles.Spinner.ocultar(idPeticion);
+            }
+
+            var cargaAppInitProxy = new CargaAppInitProxy();
+            cargaAppInitProxy.iniciar();
+            return cargaAppInitProxy;
+        }
+    }());
+</script>
+
+<script data-identifier="SM.Edu.Core.Modules.Init.AppInitProxy" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/AppInitProxy.js?v=0" data-loaded="true"></script><script type="text/javascript" async="" src="https://sdk.privacy-center.org/sdk/eda719681a1b95696c4eb7d3d4d609190fc5e756/modern/sdk.eda719681a1b95696c4eb7d3d4d609190fc5e756.js" charset="utf-8"></script><script data-identifier="$" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/jquery/jquery-2.2.1.js?v=0" data-loaded="true"></script><script data-identifier="es6-shim" data-bundle="Polyfills" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/polyfills.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Urls" data-bundle="ConstantesCore" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-core.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Comun.Literales" data-bundle="LiteralesCore-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-core.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.DatosCentro.Urls" data-bundle="ConstantesDC" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-dc.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.DatosCentro.Comun.Literales" data-bundle="LiteralesDC-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-dc.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Comunicacion.Urls" data-bundle="ConstantesCC" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-cc.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Comunicacion.Comun.Literales" data-bundle="LiteralesCC-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-cc.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Evaluacion.Urls" data-bundle="ConstantesEV" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-ev.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Evaluacion.Comun.Literales" data-bundle="LiteralesEV-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-ev.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.GestionEconomica.Urls" data-bundle="ConstantesGE" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-ge.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.GestionEconomica.Comun.Literales" data-bundle="LiteralesGE-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-ge.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Tpv.Urls" data-bundle="ConstantesTPV" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-tpv.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Tpv.Comun.Excepciones" data-bundle="LiteralesTPV-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-tpv.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Extraescolares.Urls" data-bundle="ConstantesExtraescolares" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-ex.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Extraescolares.Comun.Excepciones" data-bundle="LiteralesExtraescolares-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-ex.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Biblioteca.Urls" data-bundle="ConstantesBiblioteca" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/const-bi.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Biblioteca.Comun.Excepciones" data-bundle="LiteralesBiblioteca-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/literales-bi.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Contexto" src="/Home/Contexto?v=0?v=0" data-loaded="true"></script><script data-identifier="Globalize" data-bundle="Globalize-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/globalize.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="Modernizr" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/modernizr/modernizr-2.6.2.js?v=0" data-loaded="true"></script><script data-identifier="ko" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/knockout/knockout-3.4.0.js?v=0" data-loaded="true"></script><script data-identifier="_" data-bundle="Underscore" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/underscore.min.js?v=0" data-loaded="true"></script><script data-identifier="ko.validation" data-bundle="KoValidation-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/ko-validation.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="$.ui" data-bundle="JqueryUI-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/jquery-ui.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="kendo" data-bundle="Kendo-es-AR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/kendo.es-AR.min.js?v=0" data-loaded="true"></script><script data-identifier="toastr" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/toastr/toastr.js?v=0" data-loaded="true"></script><script data-identifier="$.validator" data-bundle="JqueryValidate" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/jquery.validate.min.js?v=0" data-loaded="true"></script><script data-identifier="Foundation" data-bundle="Foundation" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/foundation.min.js?v=0" data-loaded="true"></script><meta class="foundation-mq-small"><meta class="foundation-mq-medium"><meta class="foundation-mq-large"><meta class="foundation-mq-xlarge"><meta class="foundation-mq-xxlarge"><style></style><script data-identifier="EduCore.Libraries.Core" data-bundle="ReferenciasEduCore" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/eduCoreReferencias.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.HTML5.WebNotifications" data-bundle="HTML5" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/html5.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Validaciones.ValidacionesB" data-bundle="Validaciones" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/validaciones.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Utiles.UUID" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/utiles.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Spinner.Spinner" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Spinner/Spinner.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Utiles.QueryString" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/utiles.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Promesas.Promesa" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Promesas/Promesa.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.ConfiguracionAjax.ConfiguracionAjax" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Obsoletos.ContextoJquery.ContextoJquery" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Loggers.LoggerB" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Loggers/LoggerB.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Dialogos.Jquery.DialogoB" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Dialogos.Jquery.DialogoC" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Dialogos/Jquery/DialogoC.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Grids.PersistenciaBatch.PersistenciaBatch" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Grids/PersistenciaBatch/PersistenciaBatch.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Init.LegacyInit" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Botones.Botones" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Numericos.CamposDecimales" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/utiles.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.ControlCambios.ControlCambios" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.SoloLectura.SoloLecturaInit" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/init.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Navegador.GestionNavegadorCompatible" data-bundle="Navegador" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/navegador.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.SignalR.SignalR" data-bundle="SignalR" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/signalr.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Fechas.Fechas" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/utiles.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Tabs.Jquery.TabsHelper" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Tabs/Jquery/TabsHelper.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Utiles.Kendo" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/utiles.min.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Promesas.PromesaProvider" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Promesas/PromesaProvider.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.ServicioBase.ServicioBase" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/serviciobase/serviciobase.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.GoogleAnalytics.GoogleAnalytics" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/GA/GA.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.SoloLectura.SoloLectura" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/SoloLectura/SoloLectura.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Errores.Errores" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Errores/Errores.js?v=0" data-loaded="true"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/menu.min.js?v=0"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/novedades-altavoz.min.js?v=0"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/comunicacion/min/_columnaizquierdainit.min.js?v=0"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/comunicacion/min/_columnaderechainit.min.js?v=0"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/evaluacion/min/evaluacionfamilia.min.js?v=0"></script><script src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/piepagina.min.js?v=0"></script><script data-identifier="SM.Edu.Core.Modules.Menu.Menu" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Menu/Menu.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Dialogos.Knockout.PopupManager" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Dialogos/Knockout/PopupManager.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Comunicacion.Agenda.ColumnaIzquierda.ColumnaIzquierda" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Comunicacion/modules/ColumnaIzquierda/_ColumnaIzquierda.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Comunicacion.Agenda.ColumnaDerecha.ColumnaDerecha" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Comunicacion/modules/ColumnaDerecha/_ColumnaDerecha.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.PiePagina.PiePagina" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/PiePagina/PiePagina.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Menu.MenuUsuario" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Menu/MenuUsuario.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Menu.Favoritos" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Menu/Favoritos.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Menu.Altavoz" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Menu/Altavoz.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Menu.VisibilidadMenu" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Menu/VisibilidadMenu.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.TemplateProvider.TemplateProvider" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/TemplateProvider/TemplateProvider.js?v=0" data-loaded="true"></script><script data-identifier="$.mousewheel" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/jquery/jquery.mousewheel.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.PiePagina.ControladorActividadSesion" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/PiePagina/ControladorActividadSesion.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.PiePagina.ControladorSesionSSO" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/PiePagina/ControladorSesionSSO.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.PiePagina.InformacionPoliticas" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/PiePagina/InformacionPoliticas.js?v=0" data-loaded="true"></script><script data-identifier="$.fn.mCustomScrollbar" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Vendor/jquery/jquery.mCustomScrollbar.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.GestorCookies.GestorCookies" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/GestorCookies/GestorCookies.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Comunicacion.Agenda.ColumnaIzquierda.FotoPerfil" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Comunicacion/modules/ColumnaIzquierda/FotoPerfil.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Loggers.LoggerA" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Loggers/LoggerA.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Core.Modules.Agenda.Agenda" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Core/modules/Agenda/Agenda.js?v=0" data-loaded="true"></script><script data-identifier="SM.Edu.Evaluacion.Modules.PuestaNotas.EvaluacionFamilia.Index" src="https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/Scripts/Evaluacion/Modules/PuestaNotas/EvaluacionFamilia/EvaluacionFamiliaIndex.js?v=0" data-loaded="true"></script></head>
+<body><div id="didomi-host" class="didomi-host" data-nosnippet="true" aria-hidden="true" lang="en" data-lang-dir="ltr"></div><iframe name="__tcfapiLocator" title="__tcfapiLocator" style="display: none;"></iframe>
+    <div id="dvLoading" style="display: none;">
+        <div id="backgroundLoading"></div>
+        <div class="lds-ring">
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28"></circle></svg>
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28"></circle></svg>
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28"></circle></svg>
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28"></circle></svg>
+        </div>
+    </div>
+
+    <div id="mnuSup" role="navigation" aria-label="menú superior con los distintos apartados principales">
+        
+
+<header class="top-bar">
+    <a id="cabeceraLogoNombreColegio" href="/" title="Colegio Tomás Alva Edison" class="title-area">
+        <img alt="imagen logo colegio" data-pordefecto="/cdn/Content/images/imgEscudoDefecto.png" onerror="this.onerror = null; this.src = '/cdn/Content/images/imgEscudoDefecto.png'" src="https://steduexdata01.blob.core.windows.net/publico/colegio_200066/logo.jpg?c=639293921273606295">
+        <span class="imgEscudoDefectoCabecera"></span>
+        <div class="cabecera-cole-calendario">
+            <span class="cabecera-nombre-colegio">Colegio Tomás Alva Edison</span>
+            <span class="cabecera-calendario-escolar">Ciclo lectivo 2026</span>
+        </div>
+    </a>
+    <div id="info_perfil" class="f-dropdown" data-dropdown-content="">
+        <div class="drop_cabecera">
+            <img alt="imagen usuario" class="imgperfil" data-pordefecto="/cdn/Content/images/imgUsuarioDefecto.png" id="fotoPerfil" onerror="this.onerror = null; this.src = '/cdn/Content/images/imgUsuarioDefecto.png'" src="https://steduexdata01.blob.core.windows.net/colegio-200066/usuarios/9268ef7a-1ebc-45e2-86b5-ae2e010d775f/fotos/foto.jpg?sv=2017-04-17&amp;sr=b&amp;sig=%2FNfZ0fmSMyHhbdCDe5kuJJZePRImmygfkFukSjU5RP8%3D&amp;se=2026-11-04T13%3A28%3A50Z&amp;sp=r&amp;c=639293921273606295">
+            <div class="imgUsuarioDefectoPerfil"></div>
+            <div class="inblock">
+                <p class="drop_nombre">FACUNDO ESTEBAN GONZALEZ MARADONA</p>
+ <p class="drop_mail"><a href="#" class="ver-correo-usuario" data-correo="fagonzalez@fundacionedison.org.ar" data-texto-ver="Ver correo" data-texto-ocultar="Ocultar correo" data-texto-copiar="Copiar correo" data-texto-copiado="Copiado" role="button" aria-expanded="false" style="text-decoration: underline;">Ver correo</a></p>             </div>
+        </div>
+
+        <div class="drop_personal">
+            <a href="#" id="rolcolegiousuario"><b>Perfil:</b> Alumno</a>
+                <a href="#" id="calendariousuario_disabled"><b>Calendario escolar:</b> Ciclo lectivo 2026</a>
+
+            <a href="#" id="idiomaUsuario"><b>Idioma:</b>  Español</a>
+            <input type="hidden" id="hdnCalendarioUsuarioActual" value="c40ce079-dcd7-43e1-911f-c34c36c272e1">
+            
+            <a href="/Auth/SignOut" class="glyphBotones glyphBoton_cerrar"><span>Cerrar sesión</span></a>
+        </div>
+    </div>
+
+    
+    <div class="perfil">
+
+
+        <a href="/" class="icono_nombre_contenedor glyph_home" title="home"></a>
+
+        
+
+        <span id="top_bar_section_estrella">
+            <span id="showdiv_estrella" data-bind="click: recuperarFavorito" class="icono_nombre_contenedor glyph_estrella"></span>
+        </span>
+        <link rel="stylesheet" href="/cdn/Content/less/novedades.min.css">
+        <span id="top_bar_section_altavoz" style="display:none">
+            <span class="altavoz-divisor"></span>
+            <a id="btn_altavoz" data-bind="click: abrirNovedades" class="glyph_altavoz" title="Novedades">
+                <span class="icono-altavoz glyph_altavoz_inactivo" data-bind="css: { 'glyph_altavoz_activo': altavozNaranja(), 'glyph_altavoz_inactivo': !altavozNaranja() }"></span>
+                <span data-bind="css: { 'punto-activo': puntoNaranja(),
+                                        'punto-inactivo': !puntoNaranja() }" class="altavoz-punto punto-inactivo"></span>
+            </a>
+        </span>
+        <script type="text/javascript">
+            (function () {
+                var SM = window.SM || {};
+                SM.Edu = SM.Edu || {};
+                SM.Edu.Novedades = {
+                    urls: {
+                        pagina: '/Novedades',
+                        obtenerEstado: '/apis/novedades/Novedades/ObtenerEstadoAltavoz',
+                        obtenerAviso: '/apis/novedades/Novedades/ObtenerDatosAviso',
+                        obtenerPagina: '/apis/novedades/Novedades/ObtenerDatosPagina',
+                        registrar: '/apis/novedades/Novedades/RegistrarVisualizacion'
+                    },
+                    vistas: {
+                        aviso: '/cdn/Scripts/Novedades/Modules/Altavoz/Views/Aviso.html'
+                    }
+                };
+                window.SM = SM;
+            }());
+        </script>
+        <span id="fullscreen">
+            <a id="glyph_fullscreen" class="icono_nombre_contenedor glyphBoton_fullscreen glyphBotones"></a>
+        </span>
+        <div class="imagen-usuario">
+            <img alt="imagen usuario" class="imgperfil" data-dropdown="info_perfil" data-imagepreview="data_imagePreview" data-pordefecto="/cdn/Content/images/imgUsuarioDefecto.png" id="fotoPerfil" onerror="this.onerror = null; this.src = '/cdn/Content/images/imgUsuarioDefecto.png'" src="https://steduexdata01.blob.core.windows.net/colegio-200066/usuarios/9268ef7a-1ebc-45e2-86b5-ae2e010d775f/fotos/foto.jpg?sv=2017-04-17&amp;sr=b&amp;sig=%2FNfZ0fmSMyHhbdCDe5kuJJZePRImmygfkFukSjU5RP8%3D&amp;se=2026-11-04T13%3A28%3A50Z&amp;sp=r&amp;c=639293921273606295">
+            <div class="imgUsuarioDefectoPerfil" data-dropdown="info_perfil"></div>
+        </div>
+    </div>
+</header>
+
+<nav class="top-bar-section">
+</nav>
+
+<nav class="top-bar-section glyphBoton_menumobile" id="top-bar-mobile">
+    <span class="text-menu-mobile">Menú</span>
+    <ul id="menu-mobile">
+    </ul>
+</nav>
+
+
+
+
+<div id="drop_estrella" class="dropdowndiv" style="display: none;">
+    <ul data-bind="foreach: favoritos" class="links-nodos"></ul>
+    <ul class="links-config">
+        <li class="configuration-title">Configuración</li>
+        <li class="content-links"><a data-bind="click: editarFavoritos, ifnot: modoEdicion">Editar favoritos</a></li>
+        <li class="content-links"><a data-bind="click: guardarCambios, visible: modoEdicion" style="display: none;">Guardar cambios</a></li>
+        <li class="content-links"><a data-bind="click: cancelarEditarFavoritos, visible: modoEdicion" style="display: none;">Cancelar</a></li>
+        <li class="content-links"><a data-bind="click: insertar">Agregar esta página a favoritos</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/menu.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+<script src="/cdn/Scripts/Comunicacion/modules/Home/Menu/MenuDropdown.js"></script>
+<script src="/cdn/Scripts/Comunicacion/modules/Home/Menu/VerCorreoUsuario.js"></script>
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/novedades-altavoz.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+
+<!-- #region Helpers -->
+
+
+
+<!-- #endregion  -->
+    </div>
+
+    <main>
+        <div class="row">
+            
+
+
+<link href="/cdn/Content/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+<aside id="columna_izquierda" class="columna_izqda column" role="complementary" aria-label="columna izquierda con opciones de navegación del usuario">
+    <div id="mostrarColumnaIzquierdaMobile" class="mostrar-col-izqda glyphBotones glyphBoton_menumobile"></div>
+    <div id="foto_perfil" class="foto_perfil hide">
+        <img alt="foto usuario" data-imagepreview="data_imagePreview" data-pordefecto="/cdn/Content/images/imgUsuarioDefecto.png" data-tamanomaximo="1000" id="fotoPerfil" onerror="this.onerror = null; this.src = '/cdn/Content/images/imgUsuarioDefecto.png'" src="https://steduexdata01.blob.core.windows.net/colegio-200066/usuarios/9268ef7a-1ebc-45e2-86b5-ae2e010d775f/fotos/foto.jpg?sv=2017-04-17&amp;sr=b&amp;sig=%2FNfZ0fmSMyHhbdCDe5kuJJZePRImmygfkFukSjU5RP8%3D&amp;se=2026-11-04T13%3A28%3A50Z&amp;sp=r&amp;c=639293921273606295">
+        <div class="imgUsuarioDefecto"></div>
+    </div>
+
+
+    <div class="mCustomScrollbar _mCS_1 mCS_no_scrollbar" data-mcs-theme="dark" id="scrollColumnaIzquierda"><div id="mCSB_1" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+        <ul class="menu">
+                <li id="Nodo_90700" data-funcionalidad="" data-controller="" data-action="" data-activo="false" data-litype="nodo">
+                        <a href="#">
+                            <div class="icon-90700 dropdown-mark"></div>
+                            <span title="Mis datos">Mis datos</span>
+
+                            
+                        </a>
+                    <div data-controller="" data-action="" class="container-subnodos mCustomScrollbar _mCS_2 mCS_no_scrollbar" data-mcs-theme="dark" style=""><div id="mCSB_2" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: 52px;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <div id="Nodo_90800" data-funcionalidad="161" data-controller="MisDatos" data-action="InformacionPersonal" data-litype="subnodo" class="content-subnodos">
+                                        <a href="/DatosCentro/MisDatos/InformacionPersonal">
+                                            <span>Información personal</span>
+                                        </a>
+                                </div>
+                                <div id="Nodo_91000" data-funcionalidad="177" data-controller="MisDatos" data-action="Claves" data-litype="subnodo" class="content-subnodos">
+                                        <a href="/DatosCentro/MisDatos/Claves">
+                                            <span>Mis claves</span>
+                                        </a>
+                                </div>
+                    </div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                </li>
+                <li id="Nodo_91300" data-funcionalidad="181" data-controller="MisAsignaturas" data-action="Index" data-activo="false" data-litype="nodo">
+                        <a href="/Comunicacion/MisAsignaturas" class="">
+                            <div class="icon-91300"></div>
+                            <span title="Mis materias">Mis materias</span>
+                        </a>
+                    <div data-controller="MisAsignaturas" data-action="Index" class="container-subnodos mCustomScrollbar _mCS_3 mCS_no_scrollbar" data-mcs-theme="dark" style=""><div id="mCSB_3" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: 0px;" tabindex="0"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                </li>
+                
+                
+        </ul>
+    </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+</aside>
+
+<div id="divIdsColumnaIzquierda">
+    <input id="MisSitios" type="hidden" value="Nodo_91700">
+    <input id="identificadoresNodos" type="hidden" value="{&quot;MiCorreo&quot;:&quot;Nodo_92100&quot;,&quot;MiCorreo_CorreoNuevo&quot;:&quot;Nodo_92200&quot;,&quot;MiCorreo_ListasDistribucion&quot;:&quot;Nodo_92300&quot;,&quot;MisAsignaturas&quot;:&quot;Nodo_91300&quot;,&quot;MisSitios&quot;:&quot;Nodo_91700&quot;,&quot;MisDocumentos&quot;:&quot;Nodo_91800&quot;,&quot;MiEspacio&quot;:&quot;Nodo_91200&quot;,&quot;MiGoogleApps&quot;:&quot;Nodo_92600&quot;,&quot;AutenticacionMiGoogleApps&quot;:&quot;Nodo_101900&quot;,&quot;GruposO365&quot;:&quot;Nodo_102000&quot;,&quot;MisGruposO365&quot;:&quot;Nodo_102100&quot;,&quot;MisTeamsO365&quot;:&quot;Nodo_103200&quot;,&quot;MisFichajes&quot;:&quot;Nodo_102201&quot;,&quot;Egovit&quot;:&quot;Nodo_102700&quot;,&quot;GestionLicencias&quot;:&quot;Nodo_102800&quot;,&quot;IMTLazarus&quot;:&quot;Nodo_103201&quot;,&quot;Crea&quot;:&quot;Nodo_103300&quot;,&quot;Mensajeria&quot;:&quot;Nodo_103700&quot;}">
+    <input id="Urls" type="hidden" value="{&quot;DominioColegioO365&quot;:&quot;edisonmzao365.educamos.com&quot;,&quot;UrlRepositorio&quot;:&quot;https://edisonmza.sharepoint.com/sites/centrodocumentacion&quot;,&quot;UrlSitiosTrabajo&quot;:&quot;https://edisonmza.sharepoint.com/sites/sitiosdetrabajo&quot;,&quot;UrlSitiosAsignatura&quot;:&quot;https://edisonmza.sharepoint.com/sites/sitiosdeasignatura&quot;,&quot;PlantillaUrlOffice365&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dUrlSitio%26whr%3dedisonmzao365.educamos.com&quot;,&quot;PlantillaUrlOffice365Institucion&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dUrlSitio%26whr%3dDominioInstitucion&quot;,&quot;Owa&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dhttps%253a%252f%252foutlook.office365.com%252fowa%26whr%3dedisonmzao365.educamos.com&quot;,&quot;MiRepositorio&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dhttps%253a%252f%252fedisonmza.sharepoint.com%252fsites%252fcentrodocumentacion%26whr%3dedisonmzao365.educamos.com&quot;,&quot;MisDocumentos&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dhttps%253a%252f%252fedisonmza-my.sharepoint.com%252f_layouts%252f15%252fMySite.aspx%253fMySiteRedirect%253dAllDocuments%26whr%3dedisonmzao365.educamos.com&quot;,&quot;GruposO365&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dhttps%253a%252f%252foutlook.office.com%252fowa%252f%253fpath%253d%252fgroup%252fCorreoGrupo%252fmail%26whr%3dedisonmzao365.educamos.com\u0026tag=gO365&quot;,&quot;TeamsO365&quot;:&quot;https://sso1.educamos.com/issue/wsfed?wa=wsignin1.0\u0026wtrealm=urn:federation:MicrosoftOnline\u0026wctx=wa%3dwsignin1.0%26wreply%3dhttps%253a%252f%252fteams.microsoft.com%252fl%252fteam%252fchannelsId%252fconversations%253fgroupId%253dObjectId%26whr%3dedisonmzao365.educamos.com\u0026tag=teams&quot;}">
+    <input id="controller" type="hidden" value="CalificacionesAlumno">
+    <input id="action" type="hidden" value="Index">
+</div>
+
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/comunicacion/min/_columnaizquierdainit.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+
+
+
+
+
+
+<aside id="columna_derecha" class="columna_dcha column" role="complementary" aria-label="columna derecha con el horario y la agenda del usuario">
+    <div id="mostrarColumnaDerechaMobile" class="mostrar-col-dcha glyphBotones glyphBoton_menumobile"></div>
+    <div class="dia">
+        <div class="container-dia">
+            <h2>Mi agenda</h2>
+            <div class="container-icons">
+                <a id="btnMostrarEventos" class="glyphicons glyph_ocultar" data-mostrareventos="True" title="Ocultar eventos personales"></a>
+                <img id="btnAgendaRefresh" class="refrescar" src="/cdn/Content/images/icono_refrescar.png" alt="">
+                <input id="DiaAgenda" name="DiaAgenda" type="hidden" value="4/11/2026">
+                <img class="ui-datepicker-trigger" src="/cdn/Content/images/icono_calendario.png" alt="..." title="...">
+            </div>
+        </div>
+        <div class="selector-dia">
+            <a data-diacambio="3/11/2026" data-operacion="diaAntes" class="nav-prev"><span class="k-icon k-i-arrow-60-left"></span></a>
+            <span id="diaActual" data-diaactual="4/11/2026 00:00:00">Miércoles, 4 de noviembre</span>
+            <a data-diacambio="5/11/2026" data-operacion="diaDespues" class="nav-next"><span class="k-icon k-i-arrow-60-right"></span></a>
+        </div>
+    </div>
+
+    <div id="agendaDia"></div>
+    <div id="divColumnaDerechaCalendar" data-role="calendar" class="k-widget k-calendar" style="display: none;"><div class="k-header"><a href="#" role="button" class="k-link k-nav-prev" aria-label="Previous" aria-disabled="false"><span class="k-icon k-i-arrow-60-left"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">noviembre 2026</a><a href="#" role="button" class="k-link k-nav-next" aria-label="Next" aria-disabled="false"><span class="k-icon k-i-arrow-60-right"></span></a></div><table tabindex="0" role="grid" class="k-content k-month" cellspacing="0" data-start="2026/10/1" aria-activedescendant="divColumnaDerechaCalendar_cell_selected"><thead><tr role="row"><th scope="col" title="domingo">DO</th><th scope="col" title="lunes">LU</th><th scope="col" title="martes">MA</th><th scope="col" title="miércoles">MI</th><th scope="col" title="jueves">JU</th><th scope="col" title="viernes">VI</th><th scope="col" title="sábado">SA</th></tr></thead><tbody><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/1" title="domingo, 1 de noviembre de 2026">1</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/2" title="lunes, 2 de noviembre de 2026">2</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/3" title="martes, 3 de noviembre de 2026">3</a></td><td class="k-today k-state-selected" role="gridcell" aria-selected="true" id="divColumnaDerechaCalendar_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/4" title="miércoles, 4 de noviembre de 2026">4</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/5" title="jueves, 5 de noviembre de 2026">5</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/6" title="viernes, 6 de noviembre de 2026">6</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/7" title="sábado, 7 de noviembre de 2026">7</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/8" title="domingo, 8 de noviembre de 2026">8</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/9" title="lunes, 9 de noviembre de 2026">9</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/10" title="martes, 10 de noviembre de 2026">10</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/11" title="miércoles, 11 de noviembre de 2026">11</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/12" title="jueves, 12 de noviembre de 2026">12</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/13" title="viernes, 13 de noviembre de 2026">13</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/14" title="sábado, 14 de noviembre de 2026">14</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/15" title="domingo, 15 de noviembre de 2026">15</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/16" title="lunes, 16 de noviembre de 2026">16</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/17" title="martes, 17 de noviembre de 2026">17</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/18" title="miércoles, 18 de noviembre de 2026">18</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/19" title="jueves, 19 de noviembre de 2026">19</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/20" title="viernes, 20 de noviembre de 2026">20</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/21" title="sábado, 21 de noviembre de 2026">21</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/22" title="domingo, 22 de noviembre de 2026">22</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/23" title="lunes, 23 de noviembre de 2026">23</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/24" title="martes, 24 de noviembre de 2026">24</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/25" title="miércoles, 25 de noviembre de 2026">25</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/26" title="jueves, 26 de noviembre de 2026">26</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/27" title="viernes, 27 de noviembre de 2026">27</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/28" title="sábado, 28 de noviembre de 2026">28</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/29" title="domingo, 29 de noviembre de 2026">29</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/10/30" title="lunes, 30 de noviembre de 2026">30</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/1" title="martes, 1 de diciembre de 2026">1</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/2" title="miércoles, 2 de diciembre de 2026">2</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/3" title="jueves, 3 de diciembre de 2026">3</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/4" title="viernes, 4 de diciembre de 2026">4</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/5" title="sábado, 5 de diciembre de 2026">5</a></td></tr><tr role="row"><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/6" title="domingo, 6 de diciembre de 2026">6</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/7" title="lunes, 7 de diciembre de 2026">7</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/8" title="martes, 8 de diciembre de 2026">8</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/9" title="miércoles, 9 de diciembre de 2026">9</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/10" title="jueves, 10 de diciembre de 2026">10</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/11" title="viernes, 11 de diciembre de 2026">11</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2026/11/12" title="sábado, 12 de diciembre de 2026">12</a></td></tr></tbody></table><div class="k-footer"><a href="#" class="k-link k-nav-today" title="miércoles, 4 de noviembre de 2026">miércoles, 4 de noviembre de 2026</a></div></div>
+    <div id="HorarioSemanalRefrescar">
+        
+<link href="/cdn/Content/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+<div class="mCustomScrollbar _mCS_4" data-mcs-theme="dark" id="scrollAgendaDerecha"><div id="mCSB_4" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;"><div id="mCSB_4_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+    <div id="agendaPersonaColumnaDerecha">
+        <input type="hidden" value="" id="sesionSeleccionadaId" data-clasemateriaid="">
+        <input type="hidden" value="09:28:50.2322926" id="horaActual">
+            <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasemateriasesionid="4ee2e4ae-7561-4b87-b5c4-b131691900cc" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-divtipo="sesionagenda" data-id="7706571d-9579-4cf0-a808-b3fa012769bf" data-horainicio="13:30:00" data-horafin="14:10:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">13:30</p>
+            <!--14:10:00-->
+        </div>
+        <div class="tarea">
+            <p title="Comunicación" id="tituloEvento_7706571d-9579-4cf0-a808-b3fa012769bf" class="ellipsis materia">Comunicación</p>
+            <div id="detalle_7706571d-9579-4cf0-a808-b3fa012769bf" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_7706571d-9579-4cf0-a808-b3fa012769bf"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-7706571d-9579-4cf0-a808-b3fa012769bf" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasehorariosesionid="7706571d-9579-4cf0-a808-b3fa012769bf"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROMINA SOLEDAD DIAZ">ROMINA SOLEDAD DIAZ</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasemateriasesionid="67ae133c-7b8c-4e33-9791-cc7633fe92ad" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-divtipo="sesionagenda" data-id="c4405066-3286-4951-a940-b3fa01276b77" data-horainicio="14:10:00" data-horafin="14:50:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">14:10</p>
+            <!--14:50:00-->
+        </div>
+        <div class="tarea">
+            <p title="Comunicación" id="tituloEvento_c4405066-3286-4951-a940-b3fa01276b77" class="ellipsis materia">Comunicación</p>
+            <div id="detalle_c4405066-3286-4951-a940-b3fa01276b77" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_c4405066-3286-4951-a940-b3fa01276b77"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-c4405066-3286-4951-a940-b3fa01276b77" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasehorariosesionid="c4405066-3286-4951-a940-b3fa01276b77"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROMINA SOLEDAD DIAZ">ROMINA SOLEDAD DIAZ</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasemateriasesionid="145ecf14-5042-457b-9001-bf79395dc464" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-divtipo="sesionagenda" data-id="46642950-fd28-4950-ae76-b3fa01276d72" data-horainicio="14:50:00" data-horafin="15:30:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">14:50</p>
+            <!--15:30:00-->
+        </div>
+        <div class="tarea">
+            <p title="Comunicación" id="tituloEvento_46642950-fd28-4950-ae76-b3fa01276d72" class="ellipsis materia">Comunicación</p>
+            <div id="detalle_46642950-fd28-4950-ae76-b3fa01276d72" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_46642950-fd28-4950-ae76-b3fa01276d72"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-46642950-fd28-4950-ae76-b3fa01276d72" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=e4913b8a-40d9-439d-9c43-fe58fdc8fd8e" data-clasehorariosesionid="46642950-fd28-4950-ae76-b3fa01276d72"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROMINA SOLEDAD DIAZ">ROMINA SOLEDAD DIAZ</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="" data-clasemateriasesionid="" data-urlaccesoeva="" data-divtipo="sesionagenda" data-id="00000000-0000-0000-0000-000000000000" data-horainicio="15:30:00" data-horafin="15:40:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">15:30</p>
+            <!--15:40:00-->
+        </div>
+        <div class="tarea">
+            <p title="Recreo" id="tituloEvento_00000000-0000-0000-0000-000000000000" class="ellipsis materia">Recreo</p>
+            <div id="detalle_00000000-0000-0000-0000-000000000000" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_00000000-0000-0000-0000-000000000000"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-00000000-0000-0000-0000-000000000000" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" data-clasehorariosesionid="00000000-0000-0000-0000-000000000000"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="8239dd14-97ba-47c5-a524-fe4b897f7e1a" data-clasemateriasesionid="d44a28f2-7243-44eb-8c98-cb992f3a2dfe" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=8239dd14-97ba-47c5-a524-fe4b897f7e1a" data-divtipo="sesionagenda" data-id="93f8df05-de36-46ab-a5cc-b3fa01271671" data-horainicio="15:40:00" data-horafin="16:20:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">15:40</p>
+            <!--16:20:00-->
+        </div>
+        <div class="tarea">
+            <p title="Programación" id="tituloEvento_93f8df05-de36-46ab-a5cc-b3fa01271671" class="ellipsis materia">Programación</p>
+            <div id="detalle_93f8df05-de36-46ab-a5cc-b3fa01271671" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_93f8df05-de36-46ab-a5cc-b3fa01271671"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-93f8df05-de36-46ab-a5cc-b3fa01271671" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=8239dd14-97ba-47c5-a524-fe4b897f7e1a" data-clasehorariosesionid="93f8df05-de36-46ab-a5cc-b3fa01271671"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="RODRIGO GASTÓN PÉREZ AMED">RODRIGO GASTÓN PÉREZ AMED</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="921ad010-6060-4533-9884-90a090ee7285" data-clasemateriasesionid="1d1f8229-96a2-4703-81a0-f62911a92db6" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=921ad010-6060-4533-9884-90a090ee7285" data-divtipo="sesionagenda" data-id="0825e9d1-3994-4fcf-90fe-b49b0134ef00" data-horainicio="16:20:00" data-horafin="17:00:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">16:20</p>
+            <!--17:00:00-->
+        </div>
+        <div class="tarea">
+            <p title="Formación Ética y Ciudadana" id="tituloEvento_0825e9d1-3994-4fcf-90fe-b49b0134ef00" class="ellipsis materia">Formación Ética y Ciudadana</p>
+            <div id="detalle_0825e9d1-3994-4fcf-90fe-b49b0134ef00" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_0825e9d1-3994-4fcf-90fe-b49b0134ef00"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-0825e9d1-3994-4fcf-90fe-b49b0134ef00" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=921ad010-6060-4533-9884-90a090ee7285" data-clasehorariosesionid="0825e9d1-3994-4fcf-90fe-b49b0134ef00"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="MARTÍN BIURRIARENA">MARTÍN BIURRIARENA</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasemateriasesionid="aba1c1d1-ae16-4fe3-b194-794c0c8825ef" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-divtipo="sesionagenda" data-id="bd437f54-521d-4d3d-8532-b49b0134d24c" data-horainicio="17:00:00" data-horafin="17:40:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">17:00</p>
+            <!--17:40:00-->
+        </div>
+        <div class="tarea">
+            <p title="Sistemas Digitales y Redes" id="tituloEvento_bd437f54-521d-4d3d-8532-b49b0134d24c" class="ellipsis materia">Sistemas Digitales y Redes</p>
+            <div id="detalle_bd437f54-521d-4d3d-8532-b49b0134d24c" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_bd437f54-521d-4d3d-8532-b49b0134d24c"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-bd437f54-521d-4d3d-8532-b49b0134d24c" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasehorariosesionid="bd437f54-521d-4d3d-8532-b49b0134d24c"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROBERTO EMILIANO MENDEZ SUSTA">ROBERTO EMILIANO MENDEZ SUSTA</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="" data-clasemateriasesionid="" data-urlaccesoeva="" data-divtipo="sesionagenda" data-id="00000000-0000-0000-0000-000000000000" data-horainicio="17:40:00" data-horafin="17:50:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">17:40</p>
+            <!--17:50:00-->
+        </div>
+        <div class="tarea">
+            <p title="Recreo" id="tituloEvento_00000000-0000-0000-0000-000000000000" class="ellipsis materia">Recreo</p>
+            <div id="detalle_00000000-0000-0000-0000-000000000000" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_00000000-0000-0000-0000-000000000000"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-00000000-0000-0000-0000-000000000000" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" data-clasehorariosesionid="00000000-0000-0000-0000-000000000000"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasemateriasesionid="4050a52d-cb4a-4a39-8dde-37261e36f77f" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-divtipo="sesionagenda" data-id="b9c88605-416d-4102-bf85-b3fa012739d8" data-horainicio="17:50:00" data-horafin="18:30:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">17:50</p>
+            <!--18:30:00-->
+        </div>
+        <div class="tarea">
+            <p title="Sistemas Digitales y Redes" id="tituloEvento_b9c88605-416d-4102-bf85-b3fa012739d8" class="ellipsis materia">Sistemas Digitales y Redes</p>
+            <div id="detalle_b9c88605-416d-4102-bf85-b3fa012739d8" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_b9c88605-416d-4102-bf85-b3fa012739d8"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-b9c88605-416d-4102-bf85-b3fa012739d8" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasehorariosesionid="b9c88605-416d-4102-bf85-b3fa012739d8"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROBERTO EMILIANO MENDEZ SUSTA">ROBERTO EMILIANO MENDEZ SUSTA</p>
+        </div>
+    </div>
+    <div class="click_agenda linea_agenda" data-tipoevento="1" data-clasemateriaid="007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasemateriasesionid="8f4dafde-84f3-4ed0-a12a-278adb301cc5" data-urlaccesoeva="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-divtipo="sesionagenda" data-id="ab5375b4-ce21-498e-8828-b3fa01273b86" data-horainicio="18:30:00" data-horafin="19:10:00" data-soysustituto="False" data-soyreemplazo="False">
+        <div class="hora">
+            <p class="ellipsis">18:30</p>
+            <!--19:10:00-->
+        </div>
+        <div class="tarea">
+            <p title="Sistemas Digitales y Redes" id="tituloEvento_ab5375b4-ce21-498e-8828-b3fa01273b86" class="ellipsis materia">Sistemas Digitales y Redes</p>
+            <div id="detalle_ab5375b4-ce21-498e-8828-b3fa01273b86" data-content="vacio" class="actual" style="display:none">
+                <div id="tareaslist_ab5375b4-ce21-498e-8828-b3fa01273b86"></div>
+    <div class="iconos_agenda">
+                        
+        <div id="divActividadesDigitales-ab5375b4-ce21-498e-8828-b3fa01273b86" class="relative" data-bind="template: {name: 'popup-actividades-digitales'}"></div>
+
+                        <a id="linkAccesoEva" style="cursor:pointer;" target="_blank" class="glyph_tactil" title="Acceso a EVA" href="https://lms.educamos.com/edison_mza/course/view.php?idnumber=007a3e4b-7681-4ee5-ab2d-185ff4f8c243" data-clasehorariosesionid="ab5375b4-ce21-498e-8828-b3fa01273b86"></a>
+
+
+
+
+
+
+    </div>
+            </div>
+                    <p class="ellipsis nivel" title="ROBERTO EMILIANO MENDEZ SUSTA">ROBERTO EMILIANO MENDEZ SUSTA</p>
+        </div>
+    </div>
+
+    </div>
+</div><div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 205px; max-height: 420px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+
+<div id="divIdsAgendaPersonaColumnaDerecha">
+    <input id="IdAgendaPersonalColumnaDerecha" type="hidden" value="agendaPersonaColumnaDerecha">
+    <input id="IdSesionSeleccionada" type="hidden" value="sesionSeleccionadaId">
+    <input id="IdHoraActual" type="hidden" value="horaActual">
+    <input id="IdLinkProgramacion" type="hidden" value="linkProgramacion">
+</div>
+
+
+    </div>
+    <div class="horario_semanal">
+        <a href="/Agenda/Semanal">
+            <p class="ellipsis">Horario semanal</p>
+            <span class="glyphBotones glyphBoton_flecha"></span>
+        </a>
+    </div>
+</aside>
+
+<div id="divIdsColumnaDerecha">
+    <input id="DominioMoodle" type="hidden" value="https://lms.educamos.com">
+    <input id="dias" type="hidden" value="Domingo,Lunes,Martes,Miércoles,Jueves,Viernes,Sábado">
+    <input id="meses" type="hidden" value="enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre">
+    <input id="fechaActualD" type="hidden" value="4/11/2026">
+    <input id="horaActual" type="hidden" value="09:28:50.2166717">
+    <input id="rolBaseId" type="hidden" value="3">
+    <input id="mostrarEventos" type="hidden" value="true">
+    <input id="urlEventoAvanzado" type="hidden" value="/Agenda/EventoAvanzado">
+    <input id="urlEditarEventoAvanzado" type="hidden" value="/Agenda/EditarEventoAvanzado">
+    <input id="urlSemanal" type="hidden" value="/Agenda/Semanal">
+    <input id="urlPasarLista" type="hidden" value="/Evaluacion/PasarLista">
+    <input id="urlPuestaNotas" type="hidden" value="/Evaluacion/PuestaNotas">
+</div>
+
+
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/comunicacion/min/_columnaderechainit.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+            <section class="columna_central column" role="region" aria-label="contenido principal">
+                
+<div>
+
+</div>
+
+<link type="text/css" rel="stylesheet" href="/cdn/Content/css/puestanota.css">
+<link type="text/css" rel="stylesheet" href="/cdn/Content/less/puestaNotas.min.css">
+<link type="text/css" rel="stylesheet" href="/cdn/Content/less/puesta-notas.css">
+
+
+
+
+    <div class="w100x100"><h1 class="text-center">No existe el alumno.</h1></div>
+
+<div class="botonera">
+    <input id="btncerrarEncuestasActivas" type="button" class="button" value="Volver">
+</div>
+
+
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/evaluacion/min/evaluacionfamilia.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+            </section>
+        </div>
+        <div class="clear"></div>
+        <footer class="container-footer" role="contentinfo">
+            
+            
+<div class="content-footer">
+    <!--<span id="grupoSM">© Grupo SM</span>-->
+        <div class="a3 sumario_label text-left">
+            <a id="cabeceraLogoNombreColegio" href="/" title="Colegio Tomás Alva Edison" class="link-home">
+                <img alt="logo colegio" data-pordefecto="/cdn/Content/images/imgEscudoDefecto.png" onerror="this.onerror = null; this.src = '/cdn/Content/images/imgEscudoDefecto.png'" src="https://steduexdata01.blob.core.windows.net/publico/colegio_200066/logo.jpg?c=639293921273606295">
+                <span class="escudo-colegio-footer-defecto"></span>
+            </a>
+            <label>Código de centro:</label><span id="CodigoTenant"><label> 200066</label></span>
+            <label>Accesos totales:</label><span id="numAccesos"><label> 1655</label></span>
+            <label class="none" style="padding-bottom: 0 !important">Último acceso:</label><span id="ultimoAcceso"><label> miércoles, 04 noviembre 2026 - 09:21 h</label></span>
+        </div>
+        <div class="a3 text-left">
+            <h1>Contacto</h1>
+            <label style=" text-overflow: inherit; overflow: inherit; white-space: normal;">Alvarez Condarco, 2182</label>
+                <label style=" text-overflow: inherit; overflow: inherit; white-space: normal;">Ciudad de Mendoza</label>
+                            <label style=" text-overflow: inherit; overflow: inherit; white-space: normal;">M5519</label>
+                                                    <label class="mtop10"><a class="linkDescargaApps pointer font_color_azul" href="https://www.colegioedison.edu.ar" target="_new">https://www.colegioedison.edu.ar</a></label>
+            <label><a class="linkDescargaApps pointer font_color_azul" href="mailto:inscripcionesedison@fundacionedison.org.ar" target="_blank">inscripcionesedison@fundacionedison.org.ar</a></label>
+            <div class="clear"></div>
+        </div>
+            <div class="a3 text-left">
+                <h1>Información</h1>
+                                                    <label><a href="https://apps.educamos.com/?country=AR&amp;idioma=ES-AR" target="_blank">Descarga las apps</a></label>
+            </div>
+</div>
+<div class="clear"></div>
+<div id="divLinksPoliticas" class="content-footer-bkg" style="display: inline;">
+    <img src="/cdn/Content/images/logo-educamos-7e.png" class="logo-educamos-footer" alt="logo sm">
+    <div class="content-links-policy">
+        <a href="#" class="lnkPoliticaCookies sep" tabindex="-1">Política de cookies</a>
+        <a href="#" class="lnkPoliticaPrivacidad sep" tabindex="-1">Política de privacidad</a>
+        <a href="#" class="lnkCondicionesUso sep" tabindex="-1">Condiciones de uso</a>
+        <!--Declaración de accesibilidad-->        
+            <a href="#" class="lnkDeclaracionAccesibilidad" tabindex="-1">Declaración de accesibilidad</a>
+        <div class="clear" style="padding-bottom:10px;"></div>
+        <a href="http://www.educamos.com" class="font_size12" target="_blank" tabindex="-1">www.educamos.com</a>
+    </div>
+</div>
+
+<input id="ColegioId" data-val="true" data-val-number="El campo ColegioId debe ser un número." data-val-required="El campo ColegioId es obligatorio." name="ColegioId" type="hidden" value="200066">
+<div id="dvControlSession">
+    <input id="CaducidadSession" data-val="true" data-val-number="El campo TiempoCaducidadSesion debe ser un número." data-val-required="El campo TiempoCaducidadSesion es obligatorio." name="TiempoCaducidadSesion" type="hidden" value="60">
+
+
+<input id="SSODominio" name="SSODominio" type="hidden" value="https://sso1.educamos.com"><input id="IdsCaducidad" name="IdSesion" type="hidden" value="70abf020 tt3lzkrvtnyugwccwqiecblv">        <div style="display: none">
+            <iframe id="SsoSessionFrame" src="https://sso1.educamos.com/Autenticacion/SesionUsuario" sandbox="allow-same-origin allow-scripts">
+            </iframe>
+        </div>
+</div>
+
+<script>
+        var SM = SM || {};
+        SM.Edu = SM.Edu || {};
+        SM.Edu.Urls = SM.Edu.Urls || {};
+        SM.Edu.Urls.UrlEduApi = "https://api1.educamos.com/";
+</script>
+
+<script type="text/javascript">
+EduCore.start({ module: 'AppInit' }).then(function (promesaAppInitInicializado) {
+promesaAppInitInicializado.then(function () {
+var urlsBundle = ['https://fdeduexwus01-crewh0gcawd2g4a2.a02.azurefd.net/scripts/vendor/piepagina.min.js?v=0'];function descargaSiguienteScript(urls){
+if (urls.length > 0){
+var urlSiguienteScript = urls[0];
+var script = document.createElement('script');
+var urlsSinPrimerScript = urls.slice(1, urls.length);
+if (urlsSinPrimerScript.length > 0){
+script.addEventListener('load', function () {
+descargaSiguienteScript(urlsSinPrimerScript);
+}, false);
+}
+script.src = urlSiguienteScript;
+document.head.appendChild(script);
+}
+}
+descargaSiguienteScript(urlsBundle);
+
+});
+});</script>
+
+
+        </footer>
+    </main>
+
+    <noscript>
+        <meta http-equiv="refresh" content="0;URL=/Home/NoJavascript" />
+    </noscript>
+
+    
+
+    <!-- Hora del servidor: 4/11/2026 12:28:50 -->
+    <!-- Instancia: OnPremise;-->
+    
+
+    <script type="text/html" id="dialogo-edicion-traducciones">
+        <div data-bind="css: cssDialogo">
+            <!-- ko if : titulo() -->
+            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">
+                <span align="center" data-bind="text: titulo"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if : mensajesDeErrores().length > 0 -->
+            <div class="validation-summary-errors" data-bind="foreach : { data : mensajesDeErrores, as:'mensajeError'} ">
+                <ul>
+                    <li data-bind="text: mensajeError"></li>
+                </ul>
+            </div>
+            <!-- /ko -->
+            <!-- ko foreach : { data : traducciones, as : 'traduccion' } -->
+            <div class="a12">
+                <label data-bind="text: traduccion.nombre"></label>
+                <input autocomplete="off" type="text" data-bind="value: traduccion.valor, attr: { maxlength: $root.maxlength }, enable: traduccion.enable" class="left" />
+            </div>
+            <!-- /ko -->
+            <div class="botonera">
+                <input class="button" type="button" data-bind="value: $root.literalGuardar, click : $root.guardar,  enable: enable" />
+                <input class="button" type="button" data-bind="value: $root.literalCancelar, click:  $root.cancelar" />
+            </div>
+        </div>
+        <div class="bloqueo-traducciones"></div>
+    </script>
+
+
+
+
+
+<script type="text/javascript" id="" charset="">(function(){var e=["G-RFTWS2MLNN"];if(navigator.sendBeacon&&-1!==navigator.sendBeacon.toString().indexOf("native code")){var f=function(a){return(a||document.location.search).replace(/(^\?)/,"").split("\x26").map(function(b){return b=b.split("\x3d"),this[b[0]]=decodeURIComponent(b[1]),this}.bind({}))[0]},g=function(a){return Object.keys(a).map(function(b){return b+"\x3d"+encodeURIComponent(a[b])}).join("\x26")};try{var c=window.navigator.sendBeacon;window.navigator.sendBeacon=function(){var a=
+Array.prototype.slice.call(arguments),b=this;if(a&&a[0].match(/analytics\.google\.com|google-analytics\.com.*v=2&/)){var d=f(a[0]);e.forEach(function(h){d.tid=h;a[0]=g(d);c.apply(b,a)})}return c.apply(this,arguments)}}catch(a){return c.apply(this,arguments)}}})();</script></body></html>

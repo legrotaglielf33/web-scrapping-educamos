@@ -1,0 +1,2 @@
+!function(){"use strict";EduCore.register({module:"SM.Edu.Core.Modules.Utiles.Debug",libraries:{$:"$"},definition:function(n){return{TiposTrazas:{EventosFrontend:"evfrt"},EsTrazaActiva:function(n){var r=function(n){for(var r=n+"=",t=document.cookie.split(";"),e=0;e<t.length;e++){for(var i=t[e];" "==i.charAt(0);)i=i.substring(1,i.length);if(0==i.indexOf(r))return i.substring(r.length,i.length)}return null}(n);return null!=r&&"1"===r}}}})}();
+//# sourceMappingURL=../../../../../Scripts/maps/Core/modules/Utiles/Debug.js.map
