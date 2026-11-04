@@ -91,6 +91,11 @@ JS_CERRAR_CUADERNO = """
 }
 """
 
+# La grilla ya tiene materias cargadas.
+JS_GRILLA_LISTA = """
+() => document.querySelectorAll('.calificaciones-alumno-para-padres .bodyPlaceHolder tbody tr .titulo-wrap').length > 0
+"""
+
 # Todas las tablas de la grilla principal, como listas de filas.
 JS_TABLAS_GRILLA = """
 () => [...document.querySelectorAll('.calificaciones-alumno-para-padres table')].map(t =>
@@ -125,6 +130,30 @@ def esperar_carga(pag):
     except Exception:
         pass
     pag.wait_for_timeout(1500)
+
+
+def elegir_evaluacion(pag, i, nombre):
+    """Elige la evaluación i y espera a que la grilla tenga materias.
+    Si ya estaba elegida (suele pasar con el 1er Período) pasa antes por 'Seleccione evaluación'
+    para forzar que la página la recargue. Reintenta hasta 3 veces."""
+    sel = "#cmbEvaluaciones"
+    for intento in range(3):
+        actual = pag.eval_on_selector(sel, "s => s.selectedIndex")
+        if actual == i or intento > 0:
+            try:
+                pag.select_option(sel, index=0)
+                esperar_carga(pag)
+            except Exception:
+                pass
+        pag.select_option(sel, index=i)
+        pag.wait_for_timeout(500)  # deja que arranque el "cargando" antes de esperarlo
+        esperar_carga(pag)
+        try:
+            pag.wait_for_function(JS_GRILLA_LISTA, timeout=10000)
+            return True
+        except Exception:
+            print(f"  ({nombre}: la grilla no cargó, reintento {intento + 1}/3)")
+    return False
 
 
 def elegir_division(pag):
@@ -239,8 +268,9 @@ def main():
         if reales:
             for i, nombre in enumerate(reales, start=1):
                 print(f"\n== {nombre} ==")
-                pag.select_option("#cmbEvaluaciones", index=i)
-                esperar_carga(pag)
+                if not elegir_evaluacion(pag, i, nombre):
+                    print("  No se cargaron materias para esta evaluación. Salteo.")
+                    continue
                 guardar_grilla(pag, nombre)
                 recorrer_materias(pag, nombre, filas_csv)
         else:
