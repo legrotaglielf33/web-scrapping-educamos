@@ -11,15 +11,7 @@ Uso:
 Cómo funciona:
   1. Se abre Chromium. Si pide login, iniciá sesión A MANO (la sesión queda en sesion.json).
   2. Entrá vos a CALIFICACIONES haciendo clic en el menú, como siempre.
-  3. Volvé a la terminal y apretá Enter.
-  4. El script elige la división, recorre TODAS las evaluaciones (1er Período, 2do Período...),
-     y en cada una abre el cuaderno de cada materia y copia las notas.
-
-Archivos que genera (tienen tus datos personales: no los compartas):
-    calificaciones.csv           evaluacion, materia, docente, nivel, nombre, nota
-    mis_calificaciones.html      la página con promedios; se abre sola al terminar
-    grilla_<evaluacion>.txt      el texto de la tabla principal (para revisar)
-    grilla_<evaluacion>_N.csv    las tablas de la grilla principal
+  3. El script detecta solo cuando entres, salta las secciones vacías (como previas) y arranca solo.
 """
 
 import csv
@@ -37,7 +29,6 @@ SESION = "sesion.json"  # cookies de tu sesión: es privado, no lo compartas
 
 # --- Pedacitos de JavaScript que se ejecutan dentro de la página -------------------------
 
-# Lista de materias de la grilla, con su docente y el id del botón que abre el cuaderno.
 JS_MATERIAS = """
 () => [...document.querySelectorAll('.calificaciones-alumno-para-padres .bodyPlaceHolder tbody tr')].map(tr => {
     const t = tr.querySelector('.titulo-wrap');
@@ -50,18 +41,15 @@ JS_MATERIAS = """
 })
 """
 
-# Hay un diálogo (la ventana del cuaderno) visible y ya tiene filas.
 JS_HAY_DIALOGO = """
 () => [...document.querySelectorAll('.ui-dialog')]
     .some(d => d.getClientRects().length > 0 && d.querySelector('tbody tr'))
 """
 
-# No queda ningún diálogo visible.
 JS_NO_HAY_DIALOGO = """
 () => ![...document.querySelectorAll('.ui-dialog')].some(d => d.getClientRects().length > 0)
 """
 
-# Lee las filas del cuaderno que está abierto.
 JS_LEER_CUADERNO = """
 () => {
     const d = [...document.querySelectorAll('.ui-dialog')].filter(x => x.getClientRects().length > 0).pop();
@@ -79,7 +67,6 @@ JS_LEER_CUADERNO = """
 }
 """
 
-# Cierra el cuaderno que está abierto (botón de la X).
 JS_CERRAR_CUADERNO = """
 () => {
     const d = [...document.querySelectorAll('.ui-dialog')].filter(x => x.getClientRects().length > 0).pop();
@@ -88,7 +75,6 @@ JS_CERRAR_CUADERNO = """
 }
 """
 
-# Todas las tablas de la grilla principal, como listas de filas.
 JS_TABLAS_GRILLA = """
 () => [...document.querySelectorAll('.calificaciones-alumno-para-padres table')].map(t =>
     [...t.rows].map(r => [...r.cells].map(c => c.innerText.trim()))
@@ -99,7 +85,6 @@ JS_TABLAS_GRILLA = """
 # --- Funciones ---------------------------------------------------------------------------
 
 def nombre_seguro(texto):
-    """Deja un texto apto para nombre de archivo."""
     return re.sub(r"[^A-Za-z0-9_-]+", "_", texto).strip("_") or "sin_nombre"
 
 
@@ -116,12 +101,12 @@ def iniciar_sesion_si_hace_falta(pag, contexto):
 
 
 def esperar_carga(pag):
-    """Espera a que desaparezca el cartel de 'cargando' y un poquito más."""
+    """Espera a que desaparezca el cartel de 'cargando' y da un respiro extra."""
     try:
         pag.wait_for_selector("#dvLoading", state="hidden", timeout=15000)
     except Exception:
         pass
-    pag.wait_for_timeout(1500)
+    pag.wait_for_timeout(2000)
 
 
 def elegir_division(pag):
@@ -136,14 +121,13 @@ def elegir_division(pag):
 
 
 def abrir_cuaderno(pag, boton_id):
-    """Hace clic en el botón de la materia y espera a que aparezca el cuaderno."""
     boton = pag.locator(f"#{boton_id}")
     try:
         boton.click(timeout=3000)
     except Exception:
-        boton.evaluate("el => el.click()")  # si algo lo tapa, clic directo
+        boton.evaluate("el => el.click()")
     pag.wait_for_function(JS_HAY_DIALOGO, timeout=10000)
-    pag.wait_for_timeout(300)
+    pag.wait_for_timeout(500)
 
 
 def cerrar_cuaderno(pag):
@@ -156,7 +140,6 @@ def cerrar_cuaderno(pag):
 
 
 def guardar_grilla(pag, evaluacion):
-    """Guarda la grilla principal tal como se ve (por si las notas están ahí también)."""
     base = f"grilla_{nombre_seguro(evaluacion)}"
     try:
         texto = pag.locator(".calificaciones-alumno-para-padres").first.inner_text(timeout=3000)
@@ -170,9 +153,13 @@ def guardar_grilla(pag, evaluacion):
 
 
 def recorrer_materias(pag, evaluacion, filas_csv):
-    """Abre el cuaderno de cada materia de la evaluación actual y acumula las notas."""
     materias = pag.evaluate(JS_MATERIAS)
     print(f"  {len(materias)} materias encontradas")
+
+    # VALIDACIÓN: Si no hay materias o la tabla está vacía/sin contenido real, salteamos
+    if not materias or (len(materias) == 1 and not materias[0]["materia"]):
+        print("  -> Esta evaluación no tiene materias o está vacía. Saltando...")
+        return False
 
     for m in materias:
         if not m["botonId"]:
@@ -191,13 +178,13 @@ def recorrer_materias(pag, evaluacion, filas_csv):
             filas_csv.append([evaluacion, m["materia"], m["docente"], "error", "", ""])
         finally:
             cerrar_cuaderno(pag)
+    return True
 
 
 def generar_reporte(archivo_csv="calificaciones.csv", salida="mis_calificaciones.html"):
-    """Mete los datos del CSV adentro de la página y la guarda como un HTML que funciona solo."""
     with open(archivo_csv, encoding="utf-8-sig") as f:
         texto = f.read()
-    seguro = json.dumps(texto, ensure_ascii=False).replace("</", "<\\/")
+    seguro = json.dumps(texto, ensure_ascii=False).replace("</", "<\\\\/")
     fecha = datetime.now().strftime("%d/%m/%Y %H:%M")
     html = PLANTILLA_HTML.replace("const DATOS_INCRUSTADOS = null;", f"const DATOS_INCRUSTADOS = {seguro};")
     html = html.replace("const FECHA_DATOS = null;", f"const FECHA_DATOS = {json.dumps(fecha)};")
@@ -219,17 +206,23 @@ def main():
         iniciar_sesion_si_hace_falta(pag, contexto)
 
         print("\nAhora, en la ventana del navegador, entrá a CALIFICACIONES haciendo clic como siempre.")
-        print("Cuando veas la pantalla de Calificaciones, volvé acá y apretá Enter.")
-        input("Enter para continuar... ")
+        print("Esperando automáticamente a que cargue la pantalla de Calificaciones...")
+        
+        pag.wait_for_url("**/Calificaciones**", timeout=600_000)
+        
+        print("Esperando a que rendericen los datos en la página...")
+        try:
+            pag.wait_for_selector(".calificaciones-alumno-para-padres", state="visible", timeout=30000)
+        except Exception:
+            pass
+        
+        esperar_carga(pag)
 
-        pag = contexto.pages[-1]  # por si se abrió en una pestaña nueva
-        pag.wait_for_load_state("networkidle")
-        pag.wait_for_timeout(2000)
-
+        pag = contexto.pages[-1]
         elegir_division(pag)
+        pag.wait_for_timeout(1500)
 
         evaluaciones = pag.locator("#cmbEvaluaciones option").all_inner_texts()
-        # La posición 0 es "Seleccione evaluación"; las reales empiezan en 1.
         reales = evaluaciones[1:] if len(evaluaciones) > 1 else []
         print(f"\nEvaluaciones encontradas: {reales or '(ninguna, uso la pantalla como está)'}")
 
@@ -238,6 +231,14 @@ def main():
                 print(f"\n== {nombre} ==")
                 pag.select_option("#cmbEvaluaciones", index=i)
                 esperar_carga(pag)
+                
+                try:
+                    pag.wait_for_selector(".calificaciones-alumno-para-padres .bodyPlaceHolder tbody tr", state="visible", timeout=8000)
+                except Exception:
+                    pass
+                pag.wait_for_timeout(1500)
+
+                # Intentamos recorrer; si retorna False porque está vacío, pasamos al siguiente período sin trabarnos
                 guardar_grilla(pag, nombre)
                 recorrer_materias(pag, nombre, filas_csv)
         else:
@@ -259,7 +260,7 @@ def main():
     webbrowser.open(Path(ruta).resolve().as_uri())
 
 
-# La página con los promedios (misma que se ve en el navegador). Los datos se le agregan al final.
+# La página con los promedios y redondeo (HTML incrustado)
 PLANTILLA_HTML = r'''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -290,7 +291,7 @@ PLANTILLA_HTML = r'''<!DOCTYPE html>
   --marca: #e8eef3;
 }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-* { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.45; }
 main { max-width: 860px; margin: 0 auto; padding: 28px 18px 64px; }
 h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 4px; }
@@ -344,7 +345,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
 <body>
 <main>
   <h1>Mis calificaciones</h1>
-  <p class="sub">Cargá el archivo <b>calificaciones.csv</b> que genera el script y mirá el promedio de cada materia. Entre 6,5 y 7 te avisa que estás en la cuerda floja.</p>
+  <p class="sub">Cargá el archivo <b>calificaciones.csv</b> que genera el script y mirá el promedio de cada materia redondeado.</p>
 
   <section class="caja carga">
     <input type="file" id="archivo" accept=".csv,text/csv">
@@ -355,13 +356,13 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
   <section id="app" hidden>
     <div class="caja controles">
       <label>Evaluación <select id="scope"></select></label>
-      <label>Aprobada desde <input type="number" id="apr" value="7" min="1" max="10" step="0.1"></label>
-      <label>Cuerda floja desde <input type="number" id="flo" value="6.5" min="1" max="10" step="0.1"></label>
+      <label>Aprobada desde <input type="number" id="apr" value="7" min="1" max="10" step="1"></label>
+      <label>Cuerda floja desde <input type="number" id="flo" value="6" min="1" max="10" step="1"></label>
     </div>
     <div id="resumen" class="caja resumen"></div>
     <div id="aviso"></div>
     <div id="lista"></div>
-    <p class="priv">El promedio es el simple de todos los ítems del cuaderno. El que calcula el colegio puede ponderar distinto, así que tomalo como una referencia.</p>
+    <p class="priv">El promedio redondea al entero más cercano (ej. 4,5 pasa a 5; 4,4 pasa a 4).</p>
   </section>
   <p id="vacio" class="vacio">Todavía no cargaste ningún archivo.</p>
 </main>
@@ -369,10 +370,12 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
 <script>
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const fmt = (n) => n.toFixed(2).replace(".", ",");
-const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
 
-const DATOS_INCRUSTADOS = null; // lo reemplaza el script educamos_calificaciones.py
+const redondear = (n) => Math.round(n);
+const fmt = (n) => String(redondear(n));
+const mean = (a) => redondear(a.reduce((x, y) => x + y, 0) / a.length);
+
+const DATOS_INCRUSTADOS = null; 
 const FECHA_DATOS = null;
 let evals = [];
 let mats = new Map();
@@ -438,12 +441,12 @@ function estado(p, apr, flo) {
   if (p === null) return ["nada", "Sin notas"];
   if (p >= apr) return ["ok", "Aprobada"];
   if (p >= flo) return ["warn", "En la cuerda floja"];
-  return ["bad", "Por debajo de " + String(flo).replace(".", ",")];
+  return ["bad", "Por debajo de " + String(flo)];
 }
 
 function render() {
   const scope = $("#scope").value;
-  const apr = parseFloat($("#apr").value) || 7, flo = parseFloat($("#flo").value) || 6.5;
+  const apr = parseFloat($("#apr").value) || 7, flo = parseFloat($("#flo").value) || 6;
   document.documentElement.style.setProperty("--apr", apr);
   document.documentElement.style.setProperty("--flo", flo);
 
@@ -466,12 +469,12 @@ function render() {
     <div class="conteos">
       <span class="pill ok">${cuenta.ok} aprobadas</span>
       <span class="pill warn">${cuenta.warn} en la cuerda floja</span>
-      <span class="pill bad">${cuenta.bad} por debajo de ${String(flo).replace(".", ",")}</span>
+      <span class="pill bad">${cuenta.bad} por debajo de ${String(flo)}</span>
     </div>`;
 
   const flojas = con.filter((f) => estado(f.avg, apr, flo)[0] === "warn");
   $("#aviso").innerHTML = flojas.length
-    ? `<div class="aviso"><b>Estás en la cuerda floja en ${flojas.length === 1 ? "1 materia" : flojas.length + " materias"}</b>${flojas.map((f) => `${esc(f.nombre)} (${fmt(f.avg)})`).join(", ")}. Te faltan pocas décimas para llegar a ${String(apr).replace(".", ",")}.</div>`
+    ? `<div class="aviso"><b>Estás en la cuerda floja en ${flojas.length === 1 ? "1 materia" : flojas.length + " materias"}</b>${flojas.map((f) => `${esc(f.nombre)} (${fmt(f.avg)})`).join(", ")}. Te faltan pocas décimas para llegar a ${String(apr)}.</div>`
     : "";
 
   $("#lista").innerHTML = filas.map((f) => {
@@ -483,7 +486,7 @@ function render() {
       let ult = null;
       const lineas = d.items.map((i) => {
         const g = i.grupo !== ult ? (ult = i.grupo, i.grupo ? `<div class="item g"><span>${esc(i.grupo)}</span></div>` : "") : "";
-        return g + `<div class="item"><span>${esc(i.nombre)}</span><span class="num">${fmt(i.nota)}</span></div>`;
+        return g + `<div class="item"><span>${esc(i.nombre)}</span><span class="num">${Math.round(i.nota)}</span></div>`;
       }).join("");
       return (f.detalle.length > 1 ? `<div class="ev">${esc(d.e)}</div>` : "") + lineas;
     }).join("");
@@ -503,7 +506,6 @@ $("#archivo").addEventListener("change", (e) => {
 });
 ["scope", "apr", "flo"].forEach((id) => $("#" + id).addEventListener("input", render));
 
-// Si el script dejó los datos adentro de la página, se muestran solos.
 if (DATOS_INCRUSTADOS) {
   $(".carga").style.display = "none";
   if (FECHA_DATOS) $(".sub").textContent = "Datos del " + FECHA_DATOS + ". Para actualizarlos, volvé a correr el script.";
@@ -515,7 +517,7 @@ $("#ejemplo").addEventListener("click", () => {
   const dato = (ev, mat, doc, notas) => { filas.push([ev, mat, doc, "grupo", "Unidad 1", ""]); notas.forEach((n, i) => filas.push([ev, mat, doc, "item", "Trabajo " + (i + 1), n])); };
   dato("1er Período", "Matemática (ejemplo)", "Docente A", ["8,00", "7,50", "9,00"]);
   dato("1er Período", "Programación (ejemplo)", "Docente B", ["6,00", "7,00", "6,50"]);
-  dato("1er Período", "Inglés (ejemplo)", "Docente C", ["5,00", "6,00", "6,50"]);
+  dato("1er Período", "Inglés (ejemplo)", "Docente C", ["5,00", "4,4", "4,5"]);
   dato("2do Período", "Matemática (ejemplo)", "Docente A", ["10,00", "9,00"]);
   dato("2do Período", "Programación (ejemplo)", "Docente B", ["6,50", "6,75"]);
   dato("2do Período", "Inglés (ejemplo)", "Docente C", ["7,00", "8,00"]);
@@ -525,7 +527,6 @@ $("#ejemplo").addEventListener("click", () => {
 </body>
 </html>
 '''
-
 
 if __name__ == "__main__":
     main()
