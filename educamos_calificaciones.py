@@ -19,10 +19,38 @@ import json
 import os
 import re
 import webbrowser
+import os
+import sys
+from pathlib import Path
+
+# Si el script está empaquetado como .exe, le indicamos dónde buscar los navegadores
+if getattr(sys, 'frozen', False):
+    os.environ["PLAYWRIGHT_BROWSERS_PATH"] = str(Path.home() / "AppData" / "Local" / "ms-playwright")
 from datetime import datetime
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
+
+import os
+import sys
+import shutil
+from pathlib import Path
+
+# --- AUTO-REPARADOR DE NAVEGADOR PARA EL .EXE ---
+if getattr(sys, 'frozen', False):
+    try:
+        # Dónde busca Playwright el navegador dentro del .exe compilado
+        destino_browsers = Path(sys.executable).parent / "_internal" / "playwright" / "driver" / "package" / ".local-browsers"
+        
+        # Dónde están los navegadores reales en tu computadora
+        origen_browsers = Path.home() / "AppData" / "Local" / "ms-playwright"
+        
+        if origen_browsers.exists() and not destino_browsers.exists():
+            print("Copiando navegador necesario para el ejecutable (esto pasa solo la primera vez)...")
+            shutil.copytree(origen_browsers, destino_browsers)
+    except Exception as e:
+        print(f"Aviso en auto-reparador: {e}")
+# -----------------------------------------------
 
 INICIO_URL = "https://edison-mza.educamos.com/"
 SESION = "sesion.json"  # cookies de tu sesión: es privado, no lo compartas
@@ -197,7 +225,11 @@ def main():
     filas_csv = []
 
     with sync_playwright() as p:
-        nav = p.chromium.launch(headless=False)
+        # Intenta usar el canal de Chrome, y si no está, recurre al Chromium predeterminado
+        try:
+            nav = p.chromium.launch(headless=False, channel="chrome")
+        except Exception:
+            nav = p.chromium.launch(headless=False)
         contexto = nav.new_context(
             storage_state=SESION if os.path.exists(SESION) else None
         )

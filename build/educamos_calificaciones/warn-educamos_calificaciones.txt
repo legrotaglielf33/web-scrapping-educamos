@@ -32,6 +32,6 @@ missing module named multiprocessing.TimeoutError - imported by multiprocessing 
 missing module named multiprocessing.set_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
 missing module named multiprocessing.get_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
 missing module named pyimod02_importers - imported by C:\Users\facun\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (delayed)
-missing module named _missing_stdlib_info - imported by traceback (optional)
-missing module named 'playwright._impl._worker' - imported by playwright._impl._console_message (conditional)
 missing module named vms_lib - imported by platform (delayed, optional)
+missing module named 'playwright._impl._worker' - imported by playwright._impl._console_message (conditional)
+missing module named _missing_stdlib_info - imported by traceback (optional)
