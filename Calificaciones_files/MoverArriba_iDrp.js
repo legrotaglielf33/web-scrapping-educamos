@@ -1,2 +1,0 @@
-!function(){"use strict";EduCore.register({module:"SM.Edu.Evaluacion.Modules.TablaVirtual.Edicion.MoverArriba",definition:function(i){return{ejecutar:function(i,e,a){var d={indiceColumna:i.indiceColumna,indiceFila:i.indiceFila,propiedad:e};do{d.indiceFila--,d.indiceFila<0&&(d.indiceFila=a.estado.tamanoFila-1)}while(!a.puedoEditarCelda(d,d.propiedad));return d}}}})}();
-//# sourceMappingURL=../../../../../../Scripts/maps/Evaluacion/Modules/TablaVirtual/Edicion/MoverArriba.js.map

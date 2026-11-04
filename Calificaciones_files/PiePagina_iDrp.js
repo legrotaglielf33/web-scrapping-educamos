@@ -1,2 +1,0 @@
-!function(){"use strict";EduCore.register({module:"SM.Edu.Core.Modules.PiePagina.PiePagina",collaborators:{controlSesionActividad:"SM.Edu.Core.Modules.PiePagina.ControladorActividadSesion",controlSesionSSO:"SM.Edu.Core.Modules.PiePagina.ControladorSesionSSO",informacionPoliticas:"SM.Edu.Core.Modules.PiePagina.InformacionPoliticas"},definition:function(i){function o(){}return o.prototype.inicializar=function(){i.collaborators.informacionPoliticas.inicializar()},o}})}();
-//# sourceMappingURL=../../../../../Scripts/maps/Core/modules/PiePagina/PiePagina.js.map
