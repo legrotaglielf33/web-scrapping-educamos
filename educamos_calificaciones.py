@@ -11,13 +11,9 @@ Uso:
 Cómo funciona:
   1. Se abre Chromium. Si pide login, iniciá sesión A MANO (la sesión queda en sesion.json).
   2. Entrá vos a CALIFICACIONES haciendo clic en el menú, como siempre.
-  3. El script detecta solo que estás en Calificaciones, espera a que la red esté quieta (networkidle)
-     y arranca. No hace falta apretar Enter.
+  3. Volvé a la terminal y apretá Enter.
   4. El script elige la división, recorre TODAS las evaluaciones (1er Período, 2do Período...),
      y en cada una abre el cuaderno de cada materia y copia las notas.
-
-Los promedios se redondean siempre hacia arriba desde el medio punto:
-    4,5 -> 5      4,4 -> 4
 
 Archivos que genera (tienen tus datos personales: no los compartas):
     calificaciones.csv           evaluacion, materia, docente, nivel, nombre, nota
@@ -30,7 +26,6 @@ import csv
 import json
 import os
 import re
-import time
 import webbrowser
 from datetime import datetime
 from pathlib import Path
@@ -39,10 +34,6 @@ from playwright.sync_api import sync_playwright
 
 INICIO_URL = "https://edison-mza.educamos.com/"
 SESION = "sesion.json"  # cookies de tu sesión: es privado, no lo compartas
-
-# Selector que existe solo cuando estás en la pantalla de Calificaciones.
-SEL_CALIFICACIONES = ".calificaciones-alumno-para-padres, #cmbEvaluaciones"
-ESPERA_MAX_SEG = 600  # cuánto espera a que entres a Calificaciones
 
 # --- Pedacitos de JavaScript que se ejecutan dentro de la página -------------------------
 
@@ -122,28 +113,6 @@ def iniciar_sesion_si_hace_falta(pag, contexto):
         print("Sesión iniciada.")
 
     contexto.storage_state(path=SESION)
-
-
-def esperar_calificaciones(contexto):
-    """Espera (sin pedir Enter) a que el usuario entre a Calificaciones.
-    Revisa todas las pestañas y devuelve la que muestra la pantalla de Calificaciones."""
-    print("\nAhora, en la ventana del navegador, entrá a CALIFICACIONES haciendo clic como siempre.")
-    print("Lo detecto solo, no hace falta que toques nada acá...")
-
-    limite = time.time() + ESPERA_MAX_SEG
-    while time.time() < limite:
-        for pag in reversed(contexto.pages):
-            try:
-                if pag.locator(SEL_CALIFICACIONES).count() > 0:
-                    print("Calificaciones detectada. Esperando a que termine de cargar...")
-                    pag.wait_for_load_state("networkidle")
-                    pag.wait_for_timeout(2000)
-                    return pag
-            except Exception:
-                pass  # la pestaña estaba navegando; se reintenta
-        time.sleep(1)
-
-    raise TimeoutError("No se detectó la pantalla de Calificaciones a tiempo.")
 
 
 def esperar_carga(pag):
@@ -249,8 +218,13 @@ def main():
 
         iniciar_sesion_si_hace_falta(pag, contexto)
 
-        # Espera sola a que entres a Calificaciones y a que la red esté quieta.
-        pag = esperar_calificaciones(contexto)
+        print("\nAhora, en la ventana del navegador, entrá a CALIFICACIONES haciendo clic como siempre.")
+        print("Cuando veas la pantalla de Calificaciones, volvé acá y apretá Enter.")
+        input("Enter para continuar... ")
+
+        pag = contexto.pages[-1]  # por si se abrió en una pestaña nueva
+        pag.wait_for_load_state("networkidle")
+        pag.wait_for_timeout(2000)
 
         elegir_division(pag)
 
@@ -370,7 +344,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
 <body>
 <main>
   <h1>Mis calificaciones</h1>
-  <p class="sub">Cargá el archivo <b>calificaciones.csv</b> que genera el script y mirá el promedio de cada materia. Entre 6 y 7 te avisa que estás en la cuerda floja.</p>
+  <p class="sub">Cargá el archivo <b>calificaciones.csv</b> que genera el script y mirá el promedio de cada materia. Entre 6,5 y 7 te avisa que estás en la cuerda floja.</p>
 
   <section class="caja carga">
     <input type="file" id="archivo" accept=".csv,text/csv">
@@ -382,12 +356,12 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
     <div class="caja controles">
       <label>Evaluación <select id="scope"></select></label>
       <label>Aprobada desde <input type="number" id="apr" value="7" min="1" max="10" step="0.1"></label>
-      <label>Cuerda floja desde <input type="number" id="flo" value="6" min="1" max="10" step="0.1"></label>
+      <label>Cuerda floja desde <input type="number" id="flo" value="6.5" min="1" max="10" step="0.1"></label>
     </div>
     <div id="resumen" class="caja resumen"></div>
     <div id="aviso"></div>
     <div id="lista"></div>
-    <p class="priv">Los promedios se redondean hacia arriba desde el medio punto (4,5 pasa a 5; 4,4 queda en 4). Primero se promedian los ítems de cada evaluación y se redondea; después se promedian las evaluaciones y se vuelve a redondear; y el general se calcula igual con las materias. El colegio puede ponderar distinto, así que tomalo como una referencia.</p>
+    <p class="priv">El promedio es el simple de todos los ítems del cuaderno. El que calcula el colegio puede ponderar distinto, así que tomalo como una referencia.</p>
   </section>
   <p id="vacio" class="vacio">Todavía no cargaste ningún archivo.</p>
 </main>
@@ -396,10 +370,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .92rem; }
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmt = (n) => n.toFixed(2).replace(".", ",");
-const fmtR = (n) => String(n);
 const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
-// Redondeo hacia arriba desde .5: 4,5 -> 5 ; 4,4 -> 4. El 1e-9 evita errores de coma flotante (4,4999999).
-const redondear = (n) => Math.floor(n + 0.5 + 1e-9);
 
 const DATOS_INCRUSTADOS = null; // lo reemplaza el script educamos_calificaciones.py
 const FECHA_DATOS = null;
@@ -472,35 +443,26 @@ function estado(p, apr, flo) {
 
 function render() {
   const scope = $("#scope").value;
-  const apr = parseFloat($("#apr").value) || 7, flo = parseFloat($("#flo").value) || 6;
+  const apr = parseFloat($("#apr").value) || 7, flo = parseFloat($("#flo").value) || 6.5;
   document.documentElement.style.setProperty("--apr", apr);
   document.documentElement.style.setProperty("--flo", flo);
 
   const filas = [...mats].map(([nombre, m]) => {
-    // Promedio de cada evaluación: exacto (raw) y redondeado hacia arriba (avg).
-    const evAvg = evals.map((e) => {
-      const d = m.porEval.get(e);
-      if (!d || !d.items.length) return null;
-      const raw = mean(d.items.map((i) => i.nota));
-      return { e, raw, avg: redondear(raw), items: d.items };
-    }).filter(Boolean);
-    let avg = null, raw = null, detalle = [];
-    if (scope === "__todas") {
-      if (evAvg.length) { raw = mean(evAvg.map((x) => x.avg)); avg = redondear(raw); detalle = evAvg; }
-    } else {
-      const x = evAvg.find((x) => x.e === scope);
-      if (x) { raw = x.raw; avg = x.avg; detalle = [x]; }
-    }
-    return { nombre, docente: m.docente, avg, raw, detalle, evAvg };
+    const evAvg = evals.map((e) => { const d = m.porEval.get(e); return d && d.items.length ? { e, avg: mean(d.items.map((i) => i.nota)), items: d.items } : null; }).filter(Boolean);
+    let avg = null, detalle = [];
+    if (scope === "__todas") { if (evAvg.length) { avg = mean(evAvg.map((x) => x.avg)); detalle = evAvg; } }
+    else { const x = evAvg.find((x) => x.e === scope); if (x) { avg = x.avg; detalle = [x]; } }
+    return { nombre, docente: m.docente, avg, detalle, evAvg };
   }).sort((a, b) => (a.avg ?? 99) - (b.avg ?? 99));
 
   const con = filas.filter((f) => f.avg !== null);
   const cuenta = { ok: 0, warn: 0, bad: 0 };
   con.forEach((f) => cuenta[estado(f.avg, apr, flo)[0]]++);
-  const general = con.length ? redondear(mean(con.map((f) => f.avg))) : null;
+  const general = con.length ? mean(con.map((f) => f.avg)) : null;
+  const [cg, tg] = estado(general, apr, flo);
 
   $("#resumen").innerHTML = `
-    <div class="grande num">${general === null ? "–" : fmtR(general)}<small>promedio general</small></div>
+    <div class="grande num">${general === null ? "–" : fmt(general)}<small>promedio general</small></div>
     <div class="conteos">
       <span class="pill ok">${cuenta.ok} aprobadas</span>
       <span class="pill warn">${cuenta.warn} en la cuerda floja</span>
@@ -509,15 +471,14 @@ function render() {
 
   const flojas = con.filter((f) => estado(f.avg, apr, flo)[0] === "warn");
   $("#aviso").innerHTML = flojas.length
-    ? `<div class="aviso"><b>Estás en la cuerda floja en ${flojas.length === 1 ? "1 materia" : flojas.length + " materias"}</b>${flojas.map((f) => `${esc(f.nombre)} (${fmtR(f.avg)})`).join(", ")}. Te falta poco para llegar a ${String(apr).replace(".", ",")}.</div>`
+    ? `<div class="aviso"><b>Estás en la cuerda floja en ${flojas.length === 1 ? "1 materia" : flojas.length + " materias"}</b>${flojas.map((f) => `${esc(f.nombre)} (${fmt(f.avg)})`).join(", ")}. Te faltan pocas décimas para llegar a ${String(apr).replace(".", ",")}.</div>`
     : "";
 
   $("#lista").innerHTML = filas.map((f) => {
     const [c, t] = estado(f.avg, apr, flo);
     const pos = f.avg === null ? 0 : Math.min(100, f.avg * 10);
     const chips = f.evAvg.length > 1 || scope === "__todas"
-      ? `<div class="chips">${f.evAvg.map((x) => `<span>${esc(x.e)}: ${fmtR(x.avg)} <small>(${fmt(x.raw)})</small></span>`).join("")}</div>` : "<span></span>";
-    const exacto = f.raw === null ? "" : ` · promedio exacto ${fmt(f.raw)}`;
+      ? `<div class="chips">${f.evAvg.map((x) => `<span>${esc(x.e)}: ${fmt(x.avg)}</span>`).join("")}</div>` : "<span></span>";
     const detalle = f.detalle.map((d) => {
       let ult = null;
       const lineas = d.items.map((i) => {
@@ -527,8 +488,8 @@ function render() {
       return (f.detalle.length > 1 ? `<div class="ev">${esc(d.e)}</div>` : "") + lineas;
     }).join("");
     return `<article class="caja materia">
-      <div class="cab"><div><h2>${esc(f.nombre)}</h2><div class="doc">${esc(f.docente)}${exacto}</div></div>
-        <div class="prom num ${c}">${f.avg === null ? "–" : fmtR(f.avg)}</div></div>
+      <div class="cab"><div><h2>${esc(f.nombre)}</h2><div class="doc">${esc(f.docente)}</div></div>
+        <div class="prom num ${c}">${f.avg === null ? "–" : fmt(f.avg)}</div></div>
       <div class="escala ${f.avg === null ? "sin" : ""}"><i style="left:${pos}%"></i></div>
       <div class="pie">${chips}<span class="tag ${c}">${t}</span></div>
       ${detalle ? `<details><summary>Ver las notas (${f.detalle.reduce((n, d) => n + d.items.length, 0)})</summary>${detalle}</details>` : ""}
@@ -554,10 +515,10 @@ $("#ejemplo").addEventListener("click", () => {
   const dato = (ev, mat, doc, notas) => { filas.push([ev, mat, doc, "grupo", "Unidad 1", ""]); notas.forEach((n, i) => filas.push([ev, mat, doc, "item", "Trabajo " + (i + 1), n])); };
   dato("1er Período", "Matemática (ejemplo)", "Docente A", ["8,00", "7,50", "9,00"]);
   dato("1er Período", "Programación (ejemplo)", "Docente B", ["6,00", "7,00", "6,50"]);
-  dato("1er Período", "Inglés (ejemplo)", "Docente C", ["4,00", "5,00", "4,50"]);
+  dato("1er Período", "Inglés (ejemplo)", "Docente C", ["5,00", "6,00", "6,50"]);
   dato("2do Período", "Matemática (ejemplo)", "Docente A", ["10,00", "9,00"]);
   dato("2do Período", "Programación (ejemplo)", "Docente B", ["6,50", "6,75"]);
-  dato("2do Período", "Inglés (ejemplo)", "Docente C", ["4,00", "4,80"]);
+  dato("2do Período", "Inglés (ejemplo)", "Docente C", ["7,00", "8,00"]);
   cargarDatos(filas.map((f) => f.map((x) => '"' + x + '"').join(",")).join("\n"));
 });
 </script>
